@@ -50,15 +50,18 @@ namespace LojaVirtual
             }
 
             app.UseHttpsRedirection();
+            app.UseDefaultFiles(); //para abrir na pagina index
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            /*
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            */
         }
     }
 }
