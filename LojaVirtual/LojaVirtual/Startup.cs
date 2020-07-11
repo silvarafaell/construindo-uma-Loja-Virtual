@@ -54,14 +54,24 @@ namespace LojaVirtual
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+
             /*
+             *  https://www.site.com.br > qual controlador ? (Gestão) > Rotas
+             *
+             *
+             *
+             *
+             *
+             */
+
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Produto}/{action=Visualizar}/{id?}");
             });
-            */
+            
         }
     }
 }
