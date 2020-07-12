@@ -1,17 +1,27 @@
-﻿<h3>Produto Visualizar</h3>  @*codigo html*@
+﻿@model LojaVirtual.Models.Produto
+
+<h3>Produto Visualizar</h3>  @*codigo html*@
 :)
 
 @*Comentario: Aqui conseguimos trabalhar com CSharp e tambem HTML, para trabalhar com CSharp
-utilizamos o motor de template chamado Razor. Ele acionado quando colocarmos o @ *@
+    utilizamos o motor de template chamado Razor. Ele acionado quando colocarmos o @ *@
 
 Razor:
 <br />
 
 @{
     string nome = "Francisco Rafael"; @* pode utilizar o  codigo csharp tambem dessa forma *@
- }
-@nome
+}
+<h3>@nome</h3>
+<br />
+<h2>Produto</h2>
+<b>Codigo:</b>@Model.Id <br />
+<b>Nome:</b>@Model.Nome <br />
+<b>Descricao:</b>@Model.Descricao <br />
+<b>Valor:</b>@Model.Valor.ToString("C") <br /> @*dessa forma mostra como moeda*@
+<br />
 
-<br><br />
+
+<br />
 
 Todos os direitos reservados &copy;@DateTime.Now.Year
