@@ -16,7 +16,9 @@ namespace LojaVirtual.Controllers
 
         public ActionResult Visualizar()
         {
-            return new ContentResult() { Content = "<h3>Produto Visualizar<h3>", ContentType = "text/html" };
+
+            return View();
+           //return new ContentResult() { Content = "<h3>Produto Visualizar<h3>", ContentType = "text/html" };
             
         }
     }
