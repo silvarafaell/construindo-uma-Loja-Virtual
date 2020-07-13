@@ -27,3 +27,4 @@ D:\projetos\git\github\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\
 D:\projetos\git\github\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.Views.pdb
 D:\projetos\git\github\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.cshtml.g.cs
 D:\projetos\git\github\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.cshtml.g.cs
+D:\projetos\git\github\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\Contato.cshtml.g.cs
