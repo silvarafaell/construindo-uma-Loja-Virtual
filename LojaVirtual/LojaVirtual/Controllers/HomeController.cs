@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LojaVirtual.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LojaVirtual.Controllers
@@ -20,12 +21,13 @@ namespace LojaVirtual.Controllers
 
         public IActionResult ContatoAcao()
         {
-            string nome = HttpContext.Request.Form["nome"];
-            string email = HttpContext.Request.Form["email"];
-            string texto = HttpContext.Request.Form["texto"];
+            Contato contato = new Contato();
+            contato.Nome = HttpContext.Request.Form["nome"];
+            contato.Email = HttpContext.Request.Form["email"];
+            contato.Texto = HttpContext.Request.Form["texto"];
             //Request = Requisição   
             //Propriedade Form pega todos os valores dentro do post
-            return new ContentResult() { Content = string.Format("Dados recebidos com sucesso! <br/> Nome: {0} <br/> E-mail:{1} <br/> Texto:{2}", nome,email, texto), ContentType = "text/html" };
+            return new ContentResult() { Content = string.Format("Dados recebidos com sucesso! <br/> Nome: {0} <br/> E-mail:{1} <br/> Texto:{2}", contato.Nome,contato.Email, contato.Texto), ContentType = "text/html" };
                                                                          //contatenação 
         }
 
