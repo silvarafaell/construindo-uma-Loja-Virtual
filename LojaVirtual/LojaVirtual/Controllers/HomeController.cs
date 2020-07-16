@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LojaVirtual.Libraries.Email;
 using LojaVirtual.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,6 +28,8 @@ namespace LojaVirtual.Controllers
             contato.Texto = HttpContext.Request.Form["texto"];
             //Request = Requisição   
             //Propriedade Form pega todos os valores dentro do post
+
+            ContatoEmail.EnviarContatoPorEmail(contato);
             return new ContentResult() { Content = string.Format("Dados recebidos com sucesso! <br/> Nome: {0} <br/> E-mail:{1} <br/> Texto:{2}", contato.Nome,contato.Email, contato.Texto), ContentType = "text/html" };
                                                                          //contatenação 
         }
