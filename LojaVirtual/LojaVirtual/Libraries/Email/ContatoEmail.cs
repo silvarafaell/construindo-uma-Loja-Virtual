@@ -16,7 +16,7 @@ namespace LojaVirtual.Libraries.Email
 
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);   //smtp Gmail
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("francisco.rafaell.pereira@gmail.com","Ra09_05by*"); //email e senha 
+            smtp.Credentials = new NetworkCredential("francisco.rafaell.pereira@gmail.com","*"); //email e senha 
             smtp.EnableSsl = true; //protocolo de segurança
 
             //corpo da mensagem

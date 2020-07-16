@@ -41,9 +41,16 @@
 
                     <article class="card">
                         <div class="card-body p-5">
-                            <p class="alert alert-success">Mensagem de sucesso!</p>
+                            @*Diferente de nulo, mostra mensagem. ViewData serve para passar 
+                                informações para a Tela sem ser por meio do Modelo*@
+                            @if (ViewData["MSG_S"] != null)   
+                            {
+                            <p class="alert alert-success">@ViewData["MSG_S"]</p>
+                            }
 
-                            <form role="form" method="post" action="/Home/ContatoAcao"> @*Método Post*@
+
+                            <form role="form" method="post" action="/Home/ContatoAcao">
+                                @*Método Post*@
                                 <div class="form-group">
                                     <label for="nome">Nome</label>
                                     <div class="input-group">
@@ -52,8 +59,8 @@
                                         </div>
                                         <input type="text" id="nome" class="form-control" name="nome" placeholder=""
                                                required="">
-                                    </div> 
-                                </div> 
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label for="email">E-mail</label>
@@ -62,8 +69,8 @@
                                             <span class="input-group-text"><i class="fa fa-at"></i></span>
                                         </div>
                                         <input type="text" class="form-control" name="email" id="email" placeholder="">
-                                    </div> 
-                                </div> 
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -74,7 +81,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                                 <button class="subscribe btn btn-primary btn-block" type="submit"> Enviar </button>
                             </form>
                         </div> 

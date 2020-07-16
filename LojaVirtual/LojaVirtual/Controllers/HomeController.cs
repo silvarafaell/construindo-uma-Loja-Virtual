@@ -29,9 +29,12 @@ namespace LojaVirtual.Controllers
             //Request = Requisição   
             //Propriedade Form pega todos os valores dentro do post
 
-            ContatoEmail.EnviarContatoPorEmail(contato);
-            return new ContentResult() { Content = string.Format("Dados recebidos com sucesso! <br/> Nome: {0} <br/> E-mail:{1} <br/> Texto:{2}", contato.Nome,contato.Email, contato.Texto), ContentType = "text/html" };
-                                                                         //contatenação 
+            // ContatoEmail.EnviarContatoPorEmail(contato);
+
+            ViewData["MSG_S"] = "Mensagem de contato enviado com sucesso";
+
+            return View("contato");
+                                                                   
         }
 
         public IActionResult Login()
