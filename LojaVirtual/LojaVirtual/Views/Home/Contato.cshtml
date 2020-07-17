@@ -41,11 +41,17 @@
 
                     <article class="card">
                         <div class="card-body p-5">
-                            @*Diferente de nulo, mostra mensagem. ViewData serve para passar 
-                                informações para a Tela sem ser por meio do Modelo*@
-                            @if (ViewData["MSG_S"] != null)   
+                            @*Diferente de nulo, mostra mensagem. ViewData serve para passar
+        informações para a Tela sem ser por meio do Modelo*@
+                            @if (ViewData["MSG_S"] != null)
                             {
-                            <p class="alert alert-success">@ViewData["MSG_S"]</p>
+                                <p class="alert alert-success">@ViewData["MSG_S"]</p>
+                            }
+
+                            @*Mensagem de erro*@
+                            @if (ViewData["MSG_E"] != null)
+                            {
+                                <p class="alert alert-danger">@ViewData["MSG_E"]</p>
                             }
 
 
