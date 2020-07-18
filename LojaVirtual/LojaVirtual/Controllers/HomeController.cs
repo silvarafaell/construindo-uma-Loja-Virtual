@@ -53,6 +53,7 @@ namespace LojaVirtual.Controllers
                     }
 
                     ViewData["MSG_E"] = sb.ToString();
+                    ViewData["Contato"] = contato;
                 }
                 
 
