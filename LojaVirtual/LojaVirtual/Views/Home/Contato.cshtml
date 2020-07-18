@@ -45,13 +45,13 @@
         informações para a Tela sem ser por meio do Modelo*@
                             @if (ViewData["MSG_S"] != null)
                             {
-                                <p class="alert alert-success">@ViewData["MSG_S"]</p>
+                                <p class="alert alert-success">@Html.Raw(ViewData["MSG_S"])</p>
                             }
 
                             @*Mensagem de erro*@
                             @if (ViewData["MSG_E"] != null)
                             {
-                                <p class="alert alert-danger">@ViewData["MSG_E"]</p>
+                                <p class="alert alert-danger">@Html.Raw(ViewData["MSG_E"])</p>
                             }
 
 

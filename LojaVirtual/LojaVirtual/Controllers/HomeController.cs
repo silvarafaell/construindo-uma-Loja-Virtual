@@ -49,7 +49,7 @@ namespace LojaVirtual.Controllers
                     StringBuilder sb = new StringBuilder();
                     foreach (var texto in listaMensagens)
                     {
-                        sb.Append(texto.ErrorMessage);
+                        sb.Append(texto.ErrorMessage + "<br />"); //quebra de linha da mensagem de erro
                     }
 
                     ViewData["MSG_E"] = sb.ToString();

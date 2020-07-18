@@ -21,9 +21,9 @@ namespace LojaVirtual.Libraries.Email
 
             //corpo da mensagem
             string corpoMsg = string.Format("<h2>Contato - LojaVirtual</h2>" +
-                "<b>Nome: </b> {0} <br />" +
+                "<b>Nome:     </b> {0} <br />" +
                 "<br>E-mail: </br> {1} <br />" +
-                "<br>Texto: </br> {2} <br> />" +
+                "<br>Texto: </br>  {2} <br />" +
                 "<br /> Email enviado automaticamento do site LojaVirtual.",
                 contato.Nome,
                 contato.Email,
