@@ -10,7 +10,6 @@ D:\projetos\git\github\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\bin\
 D:\projetos\git\github\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csprojAssemblyReference.cache
 D:\projetos\git\github\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.AssemblyInfoInputs.cache
 D:\projetos\git\github\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.AssemblyInfo.cs
-D:\projetos\git\github\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.CoreCompileInputs.cache
 D:\projetos\git\github\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.RazorAssemblyInfo.cache
 D:\projetos\git\github\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.RazorAssemblyInfo.cs
 D:\projetos\git\github\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.RazorTargetAssemblyInfo.cache
