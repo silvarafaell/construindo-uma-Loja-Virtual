@@ -77,7 +77,7 @@ namespace LojaVirtual
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");  //configuração pagina inicial
+                    template: "/{controller=Home}/{action=Index}/{id?}");  //configuração pagina inicial
             });
             
         }
