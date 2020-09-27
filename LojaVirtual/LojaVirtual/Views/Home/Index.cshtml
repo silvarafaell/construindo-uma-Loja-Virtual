@@ -175,11 +175,15 @@
     /* Razor - Motor de Template do ASP.NET
      * Html Helper - Interface que proporciona gerar codigos HTML por meio do c#, isso ajuda na manipulação de informações entre HTML e tecnologias ASP.NET
      */
+
+    /*
+     * URL: #Fragmento ( HTML -
+     */
 }
 
-@using (Html.BeginForm("index", "home", FormMethod.Post))
+@using (Html.BeginForm(null, null, null, FormMethod.Post, false, new { @action = @Url.Action("index", "home") + "#formulario" }))
 {
-    <div class="container">
+    <div class="container" id="formulario">
         <div class="col-sm-6 offset-sm-2">
             <div class="row">
                 @if (TempData["MSG_S"] != null)
@@ -207,7 +211,7 @@
 
             <div class="col-sm-2">
                 <br />
-                <button class="subscribe btn btn-primary btn-block" type="submit"> Cadastrar </button>
+                <button class="subscribe btn btn-primary btn-block" type="submit" style="margin-top: 8px"> Cadastrar </button>
             </div>
 
         </div>
