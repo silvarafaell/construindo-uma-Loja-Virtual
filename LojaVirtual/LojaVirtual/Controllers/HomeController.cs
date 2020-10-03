@@ -8,15 +8,16 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using LojaVirtual.Database;
+using LojaVirtual.Repositories;
 
 namespace LojaVirtual.Controllers
 {
     public class HomeController : Controller
     {
-        private LojaVirtualContext _banco;
-        public HomeController(LojaVirtualContext banco)
+        private IClienteRepository _repository;
+        public HomeController(IClienteRepository repository)
         {
-            _banco = banco;
+            _repository = repository;
         }
         [HttpGet]
         public IActionResult Index()
@@ -29,11 +30,12 @@ namespace LojaVirtual.Controllers
         {
             if (ModelState.IsValid)
             {
+                /*
                 _banco.NewsletterEmails.Add(newsletter);
                 _banco.SaveChanges();
 
                 TempData["MSG_S"] = "E-mail cadastrado! Agora você vai receber promoções especiais no seu e-mail";
-
+                */
                 return RedirectToAction(nameof(Index));
             }
             else
@@ -110,8 +112,7 @@ namespace LojaVirtual.Controllers
         {
             if(ModelState.IsValid)
             {
-                _banco.Add(cliente);
-                _banco.SaveChanges();
+                _repository.Cadastrar(cliente);
 
                 TempData["MSG_S"] = "Cadastro realizado com sucesso!";
 
