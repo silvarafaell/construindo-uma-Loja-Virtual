@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
 using LojaVirtual.Repositories;
+using LojaVirtual.Repositories.Contracts;
 
 namespace LojaVirtual
 {
@@ -30,6 +31,7 @@ namespace LojaVirtual
         {
             //Padrão Repository
             services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<INewsletterRepository, NewsletterRepository>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;

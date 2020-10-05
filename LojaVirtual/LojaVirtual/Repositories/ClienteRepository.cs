@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LojaVirtual.Repositories
+namespace LojaVirtual.Repositories.Contracts
 {
     public class ClienteRepository : IClienteRepository
     {
@@ -45,7 +45,7 @@ namespace LojaVirtual.Repositories
            
         }
 
-        public List<Cliente> ObterTodosClientes()
+        public IEnumerable<Cliente> ObterTodosClientes()
         {
             return _banco.Clientes.ToList();
         }
