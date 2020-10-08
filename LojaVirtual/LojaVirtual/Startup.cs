@@ -38,6 +38,11 @@ namespace LojaVirtual
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //Session - configuração
+            services.AddMemoryCache(); //Guardar os dados na memoria
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(10); 
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -65,8 +70,7 @@ namespace LojaVirtual
             app.UseDefaultFiles(); //para abrir na pagina index
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
-
+            app.UseSession();
             /*
              *  https://www.site.com.br > qual controlador ? (Gestão) > Rotas
              *
