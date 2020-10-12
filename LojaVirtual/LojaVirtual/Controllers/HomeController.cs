@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using LojaVirtual.Database;
 using LojaVirtual.Repositories.Contracts;
+using Microsoft.AspNetCore.Http;
 
 namespace LojaVirtual.Controllers
 {
@@ -108,6 +109,10 @@ namespace LojaVirtual.Controllers
 
             if(cliente.Email == "francisco_rafael@hotmail.com.br" && cliente.Senha == "1234")
             {
+                HttpContext.Session.Set("ID", new byte[] { 52 });
+                HttpContext.Session.SetString("Email", cliente.Email);
+                HttpContext.Session.SetInt32("Idade", 25);
+
                 return new ContentResult() { Content="logado!" };
 
             }
@@ -117,6 +122,19 @@ namespace LojaVirtual.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Painel()
+        {
+            byte[] UsuarioID;
+            if(HttpContext.Session.TryGetValue("ID", out UsuarioID))
+            {
+                return new ContentResult() { Content = "Usuario " + UsuarioID[0] + ". Logado!" };
+            }
+            else
+            {
+                return new ContentResult() { Content = "Acesso Negado." };
+            } 
+        }
         [HttpGet]
         public IActionResult CadastroCliente()
         {
