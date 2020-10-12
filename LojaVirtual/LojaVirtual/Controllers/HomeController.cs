@@ -128,7 +128,7 @@ namespace LojaVirtual.Controllers
             byte[] UsuarioID;
             if(HttpContext.Session.TryGetValue("ID", out UsuarioID))
             {
-                return new ContentResult() { Content = "Usuario " + UsuarioID[0] + ". Logado!" };
+                return new ContentResult() { Content = "Usuario " + UsuarioID[0] + ". E-mail: " + HttpContext.Session.GetString("Email") + " - Idade: + " + HttpContext.Session.GetInt32("Idade") + "Logado!" };
             }
             else
             {
