@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
 using LojaVirtual.Repositories;
 using LojaVirtual.Repositories.Contracts;
+using LojaVirtual.Libraries.Sessao;
 
 namespace LojaVirtual
 {
@@ -30,6 +31,7 @@ namespace LojaVirtual
         public void ConfigureServices(IServiceCollection services)
         {
             //Padrão Repository
+            services.AddHttpContextAccessor();
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<INewsletterRepository, NewsletterRepository>();
             services.Configure<CookiePolicyOptions>(options =>
@@ -43,6 +45,8 @@ namespace LojaVirtual
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(10); 
             });
+
+            services.AddScoped<Sessao>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
