@@ -130,7 +130,7 @@ namespace LojaVirtual.Controllers
             Cliente cliente = _loginCliente.GetCliente();
             if(cliente != null)
             {
-                return new ContentResult() { Content = "Usuario " + cliente.Id + ". E-mail: " + cliente.Email + " - Idade: " + DateTime.Now.AddYears(cliente.Nascimento.Year) + ". Logado!" };
+                return new ContentResult() { Content = "Usuario " + cliente.Id + ". E-mail: " + cliente.Email + " - Idade: " + DateTime.Now.AddYears(-cliente.Nascimento.Year).ToString("yyyy") + ". Logado!" };
             }
             else
             {
