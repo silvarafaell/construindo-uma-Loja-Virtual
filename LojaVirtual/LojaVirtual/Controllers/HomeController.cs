@@ -109,6 +109,10 @@ namespace LojaVirtual.Controllers
 
             if(cliente.Email == "francisco_rafael@hotmail.com.br" && cliente.Senha == "1234")
             {
+                //Fazer consulta no Banco de dados Email e Senha
+                //Armazenar essa,  na sessão(cliente)
+
+
                 HttpContext.Session.Set("ID", new byte[] { 52 });
                 HttpContext.Session.SetString("Email", cliente.Email);
                 HttpContext.Session.SetInt32("Idade", 25);

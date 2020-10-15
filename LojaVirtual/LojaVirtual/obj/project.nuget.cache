@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "C068+0iovWB7uNABIAF4YLMnLCfhIR3vfADACqw+KvjSttIr+vjdB6w0C5dVFQ5YRvXKWmDZI/+u0D5V9HuJKg==",
+  "dgSpecHash": "K6cB4RgdFaI5VkZOZsOhp8uFAzpr6EZUqc4DK6ux0dSJQyY2MCt8yWEZ5xUu8ZG8CAXw57sMIsTB3WLkjMod4w==",
   "success": true,
   "projectFilePath": "D:\\projetos\\git\\github\\construindo-uma-Loja-Virtual\\LojaVirtual\\LojaVirtual\\LojaVirtual.csproj",
   "expectedPackageFiles": [
@@ -176,7 +176,7 @@
     "C:\\Users\\Rafael\\.nuget\\packages\\microsoft.netcore.targets\\2.0.0\\microsoft.netcore.targets.2.0.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\Rafael\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\newtonsoft.json.bson\\1.0.1\\newtonsoft.json.bson.1.0.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\remotion.linq\\2.2.0\\remotion.linq.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
