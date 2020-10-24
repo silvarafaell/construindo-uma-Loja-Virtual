@@ -51,6 +51,7 @@ namespace LojaVirtual
 
             services.AddScoped<Sessao>();
             services.AddScoped<LoginCliente>();
+            services.AddScoped<LoginColaborador>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -91,6 +92,11 @@ namespace LojaVirtual
             
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                name: "areas",
+                template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+              );
+
                 routes.MapRoute(
                     name: "default",
                     template: "/{controller=Home}/{action=Index}/{id?}");  //configuração pagina inicial
