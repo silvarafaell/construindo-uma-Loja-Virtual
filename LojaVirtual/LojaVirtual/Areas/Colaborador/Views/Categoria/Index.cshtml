@@ -7,6 +7,11 @@
 
 <a asp-action="Cadastrar" class="btn btn-primary">Cadastrar</a>
 
+@if (TempData["MSG_S"] != null)
+{
+    <p class="alert alert-success">@Html.Raw(TempData["MSG_S"])</p>
+}
+
 @if (Model.Count > 0)
 {
 
@@ -28,13 +33,13 @@
                         <td>@categoria.Nome</td>
                         <td>
                             @*@if (categoria.categoriaPai != null)
-                            {
-                                <span>@categoria.categoriaPai.Id - @categoria.</span>
-                            }
-                            else
-                            {
-                                <span>--</span>
-                            }*@
+                                {
+                                    <span>@categoria.categoriaPai.Id - @categoria.</span>
+                                }
+                                else
+                                {
+                                    <span>--</span>
+                                }*@
                             @Html.DisplayFor(model => categoria.categoriaPai.Id)
                             -
                             @Html.DisplayFor(model => categoria.categoriaPai.Nome)
@@ -45,7 +50,7 @@
                         </td>
                     </tr>
                 }
-                </tbody>
+            </tbody>
         </table>
     </div>
 
