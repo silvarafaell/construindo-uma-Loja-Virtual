@@ -57,7 +57,7 @@ namespace LojaVirtual
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             //caminho do banco de dados e qual conexão com ele
-            string connection = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=LojaVirtual;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connection = "Server=RAFAEL\\SQLEXPRESS;Database=LojaVirtual;User Id=sa;Password=1234;";
 
             services.AddDbContext<LojaVirtualContext>(options => options.UseSqlServer(connection));
         }
