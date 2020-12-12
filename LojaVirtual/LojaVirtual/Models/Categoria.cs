@@ -10,6 +10,7 @@ namespace LojaVirtual.Models
 {
     public class Categoria
     {
+        [Display(Name = "Código")]
         public int Id { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")] //deixa o campo obrigatorio
@@ -36,6 +37,7 @@ namespace LojaVirtual.Models
          * --4-Mouse Gamer P:2
          */
          //para permitir Nulo o ?
+         [Display(Name = "Categoria Pai")]
          public int? CategoriaPaiId { get; set; }
 
         /*
