@@ -54,7 +54,17 @@ namespace LojaVirtual
             services.AddScoped<LoginCliente>();
             services.AddScoped<LoginColaborador>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+            {
+                options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(x => "O campo deve ser preenchido!");
+            })
+             .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+             .AddSessionStateTempDataProvider();
+
+            services.AddSession(options =>
+            {
+                options.Cookie.IsEssential = true;
+            });
 
             //caminho do banco de dados e qual conexão com ele
             string connection = "Server=RAFAEL\\SQLEXPRESS;Database=LojaVirtual;User Id=sa;Password=1234;";
