@@ -89,3 +89,4 @@ C:\Projetos\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netco
 C:\Projetos\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.CopyComplete
 C:\Projetos\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Categoria\Atualizar.g.cshtml.cs
 C:\Projetos\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Colaborador\Index.g.cshtml.cs
+C:\Projetos\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Colaborador\Cadastrar.g.cshtml.cs

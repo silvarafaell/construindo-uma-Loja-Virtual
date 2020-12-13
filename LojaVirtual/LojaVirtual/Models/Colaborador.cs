@@ -27,13 +27,15 @@ namespace LojaVirtual.Models
         public string Senha { get; set; }
 
         [NotMapped] //Não velar o campo para o Banco
+        [Display(Name = "Confirme a senha")]
+        [Compare("Senha", ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E005")]
         public string ConfirmacaoSenha { get; set; }
         /*
          * TIPO
          * C - Comum
          * G - Gerente
          */
-        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")] //deixa o campo obrigatorio
+        //[Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")] //deixa o campo obrigatorio
         public string Tipo { get; set; }
     }
 }
