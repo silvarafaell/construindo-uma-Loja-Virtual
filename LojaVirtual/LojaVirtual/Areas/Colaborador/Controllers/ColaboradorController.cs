@@ -66,5 +66,16 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Excluir(int id)
+        {
+            _colaboradorRepository.Excluir(id);
+
+            TempData["MSG_S"] = Mensagem.MSG_S002;
+
+            return RedirectToAction(nameof(Index));
+
+        }
     }
 }
