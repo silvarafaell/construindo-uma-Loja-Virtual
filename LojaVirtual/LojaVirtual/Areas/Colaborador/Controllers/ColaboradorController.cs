@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Libraries.Lang;
+using LojaVirtual.Libraries.Texto;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -36,6 +37,8 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         {
             if(ModelState.IsValid)
             {
+                //TODO - Gerar Senha Aleatoria, Enviar o E-mail
+
                 colaborador.Tipo = "C";
                 _colaboradorRepository.Cadastrar(colaborador);
 
@@ -53,6 +56,16 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             return View(colaborador);
         }
 
+        [HttpGet]
+        public IActionResult GerarSenha(int id)
+        {
+            Models.Colaborador colaborador = _colaboradorRepository.ObterColaborador(id);
+            colaborador.Senha = KeyGenerator.GetUniqueKey(8);
+            _colaboradorRepository.Atualizar(colaborador);
+
+            //TODO -  Enviar o E-mail
+
+        }
         [HttpPost]
         public IActionResult Atualizar([FromForm] Models.Colaborador colaborador, int id)
         {
