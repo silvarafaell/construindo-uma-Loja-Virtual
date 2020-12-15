@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +9,18 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.Email
 {
-    public class ContatoEmail
+    public class GerenciarEmail
     {
-        public static void EnviarContatoPorEmail(Contato contato)
+        private SmtpClient _smtp;
+        private IConfiguration _configuration;
+        public GerenciarEmail(SmtpClient smtp, IConfiguration configuration)
+        {
+            _smtp = smtp;
+            _configuration = configuration;
+        }
+        public  void EnviarContatoPorEmail(Contato contato)
         {
             //SMTP --Servidor que vai enviar a mensagem
-
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);   //smtp Gmail
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("francisco.rafaell.pereira@gmail.com","*"); //email e senha 
-            smtp.EnableSsl = true; //protocolo de segurança
 
             //corpo da mensagem
             string corpoMsg = string.Format("<h2>Contato - LojaVirtual</h2>" +
@@ -33,7 +36,7 @@ namespace LojaVirtual.Libraries.Email
             //MailMessage > Construir a mensagem
 
             MailMessage mensagem = new MailMessage();
-            mensagem.From = new MailAddress("francisco.rafaell.pereira@gmail.com");
+            mensagem.From = new MailAddress(_configuration.GetValue<string>("Email:Username"));
             mensagem.To.Add("francisco.rafaell.pereira@gmail.com");
             mensagem.Subject = "Contato - LojaVirtual - Email: " + contato.Email;//assunto
             mensagem.Body = corpoMsg;//conteudo
@@ -41,7 +44,7 @@ namespace LojaVirtual.Libraries.Email
 
 
             //Enviar mensagem via SMTP
-            smtp.Send(mensagem); 
+            _smtp.Send(mensagem); 
         }
     }
 }
