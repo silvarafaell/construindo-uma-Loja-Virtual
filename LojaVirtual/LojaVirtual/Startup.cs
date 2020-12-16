@@ -46,11 +46,11 @@ namespace LojaVirtual
 
                 SmtpClient smtp = new SmtpClient()
                 {
-                    Host = Configuration.GetValue<string>("Email: ServerSMTP"),
-                    Port = Configuration.GetValue<int>("Email: ServerPort"),
+                    Host = Configuration.GetValue<string>("Email:ServerSMTP"),
+                    Port = Configuration.GetValue<int>("Email:ServerPort"),
                     UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(Configuration.GetValue<string>("Username"), Configuration.GetValue<string>("Password")),
-                    EnableSsl = true //protocolo de segurança
+                    Credentials = new NetworkCredential(Configuration.GetValue<string>("Email:Username"), Configuration.GetValue<string>("Email:Password")),
+                    EnableSsl = true 
                 };
                 return smtp;
             });

@@ -20,9 +20,6 @@ namespace LojaVirtual.Libraries.Email
         }
         public  void EnviarContatoPorEmail(Contato contato)
         {
-            //SMTP --Servidor que vai enviar a mensagem
-
-            //corpo da mensagem
             string corpoMsg = string.Format("<h2>Contato - LojaVirtual</h2>" +
                 "<b>Nome:     </b> {0} <br />" +
                 "<br>E-mail: </br> {1} <br />" +
@@ -45,6 +42,26 @@ namespace LojaVirtual.Libraries.Email
 
             //Enviar mensagem via SMTP
             _smtp.Send(mensagem); 
+        }
+
+        public void EnviarSenhaParaColaboradorPorEmail(Colaborador colaborador)
+        {
+            string corpoMsg = string.Format("<h2>Colaborador - LojaVirtual</h2>" + 
+                "Sua Senha é:" + 
+                "<h3>{0}</h3>", colaborador.Senha);
+
+            //MailMessage > Construir a mensagem
+
+            MailMessage mensagem = new MailMessage();
+            mensagem.From = new MailAddress(_configuration.GetValue<string>("Email:Username"));
+            mensagem.To.Add(colaborador.Email);
+            mensagem.Subject = "Colaborador - LojaVirtual - Senha do Colaborador: " + colaborador.Nome;//assunto
+            mensagem.Body = corpoMsg;//conteudo
+            mensagem.IsBodyHtml = true; //para o corpo da mensagem aceitar HTML
+
+
+            //Enviar mensagem via SMTP
+            _smtp.Send(mensagem);
         }
     }
 }
