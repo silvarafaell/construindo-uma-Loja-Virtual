@@ -10,6 +10,12 @@ namespace LojaVirtual.Libraries.Filtro
 {
     public class ColaboradorAutorizacaoAttribute : Attribute, IAuthorizationFilter
     {
+        private string _tipoColaboradorAutorizado;
+        public ColaboradorAutorizacaoAttribute(string TipoColaboradorAutorizado = "C")
+        {
+            _tipoColaboradorAutorizado = TipoColaboradorAutorizado;
+        }
+
         LoginColaborador _loginColaborador;
         public void OnAuthorization(AuthorizationFilterContext context)
         {
@@ -18,6 +24,13 @@ namespace LojaVirtual.Libraries.Filtro
             if (colaborador == null)
             {
                 context.Result = new RedirectToActionResult("Login", "Home", null);
+            }
+            else
+            {
+                if(colaborador.Tipo == "C" && _tipoColaboradorAutorizado == "G")
+                {
+                    context.Result = new ForbidResult(); //ForbidResult status para acesso negado
+                }
             }
         }
     }
