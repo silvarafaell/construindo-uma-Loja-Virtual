@@ -17,6 +17,7 @@ namespace LojaVirtual.Repositories.Contracts
         void Excluir(int Id);
 
         Colaborador ObterColaborador(int Id);
+        List<Colaborador> ObterColaboradorPorEmail(string email);
         IPagedList<Colaborador> ObterTodosColaboradores(int? pagina);
     }
 }
