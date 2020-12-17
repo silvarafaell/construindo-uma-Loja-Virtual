@@ -29,6 +29,16 @@ namespace LojaVirtual.Repositories
         public void Atualizar(Colaborador colaborador)
         {
             _banco.Update(colaborador);
+            _banco.Entry(colaborador).Property(a => a.Senha).IsModified = false;
+            _banco.SaveChanges();
+        }
+
+        public void AtualizarSenha(Colaborador colaborador)
+        {
+            _banco.Update(colaborador);
+            _banco.Entry(colaborador).Property(a => a.Nome).IsModified = false;
+            _banco.Entry(colaborador).Property(a => a.Email).IsModified = false;
+            _banco.Entry(colaborador).Property(a => a.Tipo).IsModified = false;
             _banco.SaveChanges();
         }
 
@@ -56,5 +66,7 @@ namespace LojaVirtual.Repositories
             int NumeroPagina = pagina ?? 1;
             return _banco.Colaboradores.Where(a => a.Tipo != "G").ToPagedList<Colaborador>(NumeroPagina, RegistroPorPagina);
         }
+
+        
     }
 }
