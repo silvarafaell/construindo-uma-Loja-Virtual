@@ -37,7 +37,6 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Cadastrar([FromForm]Categoria categoria)
         {
             if (ModelState.IsValid)
@@ -64,7 +63,6 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Atualizar([FromForm]Categoria categoria, int id)
         {
             if(ModelState.IsValid)

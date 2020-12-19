@@ -38,7 +38,6 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Cadastrar([FromForm]Models.Colaborador colaborador)
         {
             ModelState.Remove("Senha");
@@ -79,7 +78,6 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
 
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Atualizar([FromForm] Models.Colaborador colaborador, int id)
         {
             ModelState.Remove("Senha");
