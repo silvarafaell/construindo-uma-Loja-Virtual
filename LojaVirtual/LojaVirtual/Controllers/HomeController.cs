@@ -35,6 +35,7 @@ namespace LojaVirtual.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Index([FromForm] NewsletterEmail newsletter)
         {
             if (ModelState.IsValid)
