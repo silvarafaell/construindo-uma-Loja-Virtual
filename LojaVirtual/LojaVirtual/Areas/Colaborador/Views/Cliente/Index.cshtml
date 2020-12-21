@@ -7,6 +7,21 @@
 
 <br />
 <br />
+<!--
+    Formulário
+    --QueryString: colaborador/Cliente/Index?pesquisa={palavraDigitada}
+-->
+
+<form method="get">
+    <div class="form-group">
+        <label for="pesquisa"></label>
+        <input type="text" name="pesquisa" id="pesquisa" class="form-control" placeholder="Digite o nome ou e-mail do cliente">
+    </div>
+    <button type="submit" class="btn btn-primary">Ok</button>
+</form>
+
+<br />
+<br />
 
 @if (TempData["MSG_S"] != null)
 {
