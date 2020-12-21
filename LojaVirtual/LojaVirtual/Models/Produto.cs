@@ -22,6 +22,9 @@ namespace LojaVirtual.Models
         public int Altura { get; set; }
         public int Comprimento { get; set; }
 
+        //EF - ORM - Biblioteca Unir - Banco de dados e POO.(ORM - Mapeamento de Objetos <-> Relacionamento)
+        //Fluente API - Attributes
+
         //Banco de dados - Relacionamento entre Tabela
         public int CategoriaId { get; set; }
 
@@ -29,7 +32,6 @@ namespace LojaVirtual.Models
         [ForeignKey("CategoriaId")]
         public Categoria categoria { get; set; }
 
-        //EF - ORM - Biblioteca Unir - Banco de dados e POO.(ORM - Mapeamento de Objetos <-> Relacionamento)
-        //Fluente API - Attributes
+        public ICollection<Imagem> Imagens { get; set; }
     }
 }
