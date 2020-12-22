@@ -20,5 +20,11 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
           var produtos = _produtoRepository.ObterTodosProdutos(pagina, pesquisa);
           return View(produtos);
         }
+
+        [HttpGet]
+        public IActionResult Cadastrar()
+        {
+            return View();
+        }
     }
 }
