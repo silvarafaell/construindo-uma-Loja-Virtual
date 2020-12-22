@@ -18,7 +18,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         public IActionResult Index(int? pagina, string pesquisa)
         {
           var produtos = _produtoRepository.ObterTodosProdutos(pagina, pesquisa);
-            return View();
+          return View(produtos);
         }
     }
 }

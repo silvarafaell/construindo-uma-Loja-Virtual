@@ -30,7 +30,7 @@ namespace LojaVirtual.Models
 
         //POO - Associações entre Objetos
         [ForeignKey("CategoriaId")]
-        public virtual Categoria categoria { get; set; }
+        public virtual Categoria Categoria { get; set; }
 
         public virtual ICollection<Imagem> Imagens { get; set; }
     }
