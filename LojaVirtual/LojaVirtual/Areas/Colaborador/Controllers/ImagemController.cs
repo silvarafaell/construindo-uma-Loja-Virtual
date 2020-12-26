@@ -13,13 +13,30 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         [Area("Colaborador")]
         public IActionResult Armazenar(IFormFile file)
         {
-            GerenciadorArquivo.CadastrarImagemProduto(file);
-            return View();
+            var Caminho = GerenciadorArquivo.CadastrarImagemProduto(file);
+
+            if(Caminho.Length > 0)
+            {
+                return Ok(new { caminho = Caminho }); //JSON > JavaScript  > JavaScript object Notation
+            }
+            else
+            {
+                return new StatusCodeResult(500);
+            }
+            
         }
 
-        public IActionResult Deletar()
+        public IActionResult Deletar(string caminho)
         {
-            return View();
+            if(GerenciadorArquivo.ExcluirImagemProduto(caminho))
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+            
         }
     }
 }
