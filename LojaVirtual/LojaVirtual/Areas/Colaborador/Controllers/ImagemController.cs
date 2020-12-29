@@ -11,6 +11,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
     public class ImagemController : Controller
     {
         [Area("Colaborador")]
+        [HttpPost]
         public IActionResult Armazenar(IFormFile file)
         {
             var Caminho = GerenciadorArquivo.CadastrarImagemProduto(file);

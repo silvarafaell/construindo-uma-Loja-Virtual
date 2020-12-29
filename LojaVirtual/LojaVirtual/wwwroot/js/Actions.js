@@ -22,7 +22,18 @@ function AjaxUploadImagemProduto() {
         Formulario.append("file", Binario);
 
         //Requisiçao Ajax enviado a formulario
-
+        $.ajax({
+            type: "POST",
+            url: "Colaborador/Imagem/Armazenar",
+            data: Formulario,
+            contentType: false,
+            processData: false,
+            error: function () {
+                alert: ("Erro no envio do arquivo!");                   },
+            success: function (data) {
+                alert: ("Arquivo enviado com sucesso!" + data.caminho)
+            }
+        });
     });
 }
 
