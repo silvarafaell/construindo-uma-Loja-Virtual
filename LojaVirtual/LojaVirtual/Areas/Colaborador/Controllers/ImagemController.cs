@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Areas.Colaborador.Controllers
 {
+    [Area("Colaborador")]
     public class ImagemController : Controller
     {
-        [Area("Colaborador")]
         [HttpPost]
         public IActionResult Armazenar(IFormFile file)
         {
