@@ -23,8 +23,8 @@ namespace LojaVirtual.Libraries.Arquivo
 
         public static bool ExcluirImagemProduto(string caminho)
         {
-            String Caminho = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", caminho.TrimStart('/'));
-            if(File.Exists(caminho))
+            string Caminho = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", caminho.TrimStart('/'));
+            if (File.Exists(Caminho))
             {
                 File.Delete(Caminho);
                 return true;
