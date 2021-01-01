@@ -34,5 +34,19 @@ namespace LojaVirtual.Libraries.Arquivo
                 return false;
             }
         }
+
+        internal static void MoverImagensProduto(List<string> ListaCaminhoTemp, string ProdutoId)
+        {
+            //Criar a pasta do produto
+            var CaminhoDefinitivoPastaProduto = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", ProdutoId);
+
+            if(!Directory.Exists(CaminhoDefinitivoPastaProduto))
+            {
+                Directory.CreateDirectory(CaminhoDefinitivoPastaProduto);
+            }
+
+            //Mover a Imagem da pasta temp para a pasta definitiva
+            throw new NotImplementedException();
+        }
     }
 }

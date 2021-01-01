@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LojaVirtual.Libraries.Arquivo;
 using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
@@ -40,6 +41,8 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             {
                 //TODO - Salvar o produto
                 _produtoRepository.Cadastrar(produto);
+
+                GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]),produto.Id.ToString());
 
                 TempData["MSG_S"] = Mensagem.MSG_S001;
 
