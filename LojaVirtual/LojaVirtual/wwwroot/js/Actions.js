@@ -18,7 +18,8 @@ function AjaxUploadImagemProduto() {
     $(".btn-imagem-excluir").click(function () {
         var CampoHidden = $(this).parent().find("input[name=imagem]");
         var Imagem = $(this).parent().find(".img-upload");
-
+        var BtnExcluir = $(this).parent().find(".btn-imagem-excluir");
+        var InputFile = $(this).parent().find(".input-file");
 
         $.ajax({
             type: "GET",
@@ -28,7 +29,9 @@ function AjaxUploadImagemProduto() {
             },
             success: function () {
                 Imagem.attr("src", "/img/imagem-padrao.png");
-                
+                BtnExcluir.addClass("btn-ocultar");
+                CampoHidden.val("");
+                InputFile.val("");
             }
         });
     });
@@ -41,6 +44,7 @@ function AjaxUploadImagemProduto() {
 
         var CampoHidden = $(this).parent().find("input[name=imagem]");
         var Imagem = $(this).parent().find(".img-upload");
+        var BtnExcluir = $(this).parent().find(".btn-imagem-excluir");
         //Requisiçao Ajax enviado a formulario
         $.ajax({
             type: "POST",
@@ -55,6 +59,7 @@ function AjaxUploadImagemProduto() {
                 var caminho = data.caminho;
                 Imagem.attr("src", caminho);
                 CampoHidden.val(caminho);
+                BtnExcluir.removeClass("btn-ocultar");
             }
         });
     });
