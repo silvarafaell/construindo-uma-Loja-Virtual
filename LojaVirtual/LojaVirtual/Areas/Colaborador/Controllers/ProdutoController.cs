@@ -54,7 +54,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             else
             {
                 ViewBag.Categorias = _categoriaRepository.ObterTodasCategorias().Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
-                produto.Imagens = (ICollection<Imagem>)new List<string>(Request.Form["imagem"]).Select(a => new Imagem() { Caminho = a });
+                produto.Imagens = (ICollection<Imagem>)new List<string>(Request.Form["imagem"]).Where(a=>a.Trim().Length > 0).Select(a => new Imagem() { Caminho = a }).ToList();
   
                 return View();
             }   

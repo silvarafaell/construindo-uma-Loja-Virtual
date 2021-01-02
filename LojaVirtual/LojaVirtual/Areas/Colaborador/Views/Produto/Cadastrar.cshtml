@@ -97,7 +97,12 @@
     </div
 
         @{ 
-            var Imagens = Model.Imagens;
+            List<Imagem> Imagens = new List<Imagem>();
+            if(Model != null)
+            {
+                Imagens = Model.Imagens.ToList();
+            }
+            
         }
     <div class="row Imagens">
         @for (int i = 0; i < 12; i++)
