@@ -16,10 +16,12 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
     {
         private IProdutoRepository _produtoRepository;
         private ICategoriaRepository _categoriaRepository;
-        public ProdutoController(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
+        private IImagemRepository _imagemRepository;
+        public ProdutoController(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository, IImagemRepository imagemRepository)
         {
             _produtoRepository = produtoRepository;
             _categoriaRepository = categoriaRepository;
+            _imagemRepository = imagemRepository;
         }
         public IActionResult Index(int? pagina, string pesquisa)
         {
@@ -42,7 +44,9 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
                 //TODO - Salvar o produto
                 _produtoRepository.Cadastrar(produto);
 
-                List<string> ListaCaminhoDef =  GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]),produto.Id.ToString());
+                List<Imagem> ListaImagensDef =  GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]), produto.Id);
+
+                _imagemRepository.CadastrarImagens(ListaImagensDef, produto.Id);
 
                 TempData["MSG_S"] = Mensagem.MSG_S001;
 
