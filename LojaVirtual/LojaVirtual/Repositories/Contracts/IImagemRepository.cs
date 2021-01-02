@@ -9,7 +9,7 @@ namespace LojaVirtual.Repositories.Contracts
     public interface IImagemRepository
     {
         void CadastrarImagens(List<Imagem> ListaImagens, int ProdutoId);
-        void Cadastrar(List<Imagem> listaImagensDef, Imagem imagem);
+        void Cadastrar(Imagem imagem);
         void Excluir(int Id);
         void ExcluirImagensDoProduto(int ProdutoId);
     }
