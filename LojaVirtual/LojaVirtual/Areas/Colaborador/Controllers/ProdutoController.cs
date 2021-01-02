@@ -42,7 +42,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
                 //TODO - Salvar o produto
                 _produtoRepository.Cadastrar(produto);
 
-                GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]),produto.Id.ToString());
+                List<string> ListaCaminhoDef =  GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]),produto.Id.ToString());
 
                 TempData["MSG_S"] = Mensagem.MSG_S001;
 
