@@ -95,3 +95,4 @@ C:\Projetos\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netco
 C:\Projetos\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.genruntimeconfig.cache
 C:\Projetos\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.CopyComplete
 C:\Projetos\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csprojAssemblyReference.cache
+C:\Projetos\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Components\Menu\Default.g.cshtml.cs
