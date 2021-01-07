@@ -34,7 +34,7 @@ namespace LojaVirtual.Controllers
         [HttpGet]
         public IActionResult Index(int? pagina, string pesquisa, string ordenacao)
         {
-            var viewModel = new IndexViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao) };
+            var viewModel = new ProdutoListagemViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao) };
 
             return View(viewModel);
         }
@@ -53,7 +53,7 @@ namespace LojaVirtual.Controllers
             }
             else
             {
-                var viewModel = new IndexViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao) };
+                var viewModel = new ProdutoListagemViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao) };
                 return View(viewModel);
             }
         }
