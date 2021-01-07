@@ -25,7 +25,7 @@ namespace LojaVirtual.Controllers
             //TODO - Criar algoritmo recursivo que obtem uma lista com todas as categorias que devem apresentar o produto.
             Categoria CategoriaPrincipal = _categoriaRepository.ObterCategoria(slug);
             List<Categoria> lista = GetCategorias(_categoriaRepository.ObterTodasCategorias().ToList(), CategoriaPrincipal);
-
+            ViewBag.Categorias = lista;
             //TODO - Adaptar o ProdutoRepository para receber uma lista de categorias e filtrar os produtos baseado nessa lista.
             return View();
         }
@@ -33,6 +33,11 @@ namespace LojaVirtual.Controllers
         private List<Categoria> lista = new List<Categoria>();
         private List<Categoria> GetCategorias(List<Categoria> categorias, Categoria CategoriaPrincipal)
         {
+            if(!lista.Exists(a=> a.Id == CategoriaPrincipal.Id))
+            {
+                lista.Add(CategoriaPrincipal);
+            }
+          
             var ListaCategoriaFilho = categorias.Where(a => a.CategoriaPaiId == CategoriaPrincipal.Id);
             if (ListaCategoriaFilho.Count() > 0) 
             {

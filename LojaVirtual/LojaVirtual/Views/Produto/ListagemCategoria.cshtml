@@ -6,3 +6,9 @@
 
 <h1>ListagemCategoria - @slug</h1>
 
+<ul>
+    @foreach(Categoria categoria in ViewBag.Categorias)
+    {
+        <li>@categoria.Id - @categoria.Nome</li>
+    }
+</ul>
