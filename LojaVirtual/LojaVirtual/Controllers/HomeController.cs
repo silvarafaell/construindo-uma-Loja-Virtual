@@ -32,16 +32,14 @@ namespace LojaVirtual.Controllers
             _produtoRepository = produtoRepository;
         }
         [HttpGet]
-        public IActionResult Index(int? pagina, string pesquisa, string ordenacao)
+        public IActionResult Index()
         {
-            var viewModel = new ProdutoListagemViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao) };
-
-            return View(viewModel);
+            return View();
         }
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult Index(int? pagina, string pesquisa, string ordenacao, [FromForm] NewsletterEmail newsletter)
+        public IActionResult Index([FromForm] NewsletterEmail newsletter)
         {
             if (ModelState.IsValid)
             {
@@ -53,8 +51,7 @@ namespace LojaVirtual.Controllers
             }
             else
             {
-                var viewModel = new ProdutoListagemViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao) };
-                return View(viewModel);
+                return View();
             }
         }
 

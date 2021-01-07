@@ -1,4 +1,5 @@
-﻿using LojaVirtual.Repositories.Contracts;
+﻿using LojaVirtual.Models.ViewsModels;
+using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,13 +16,13 @@ namespace LojaVirtual.Libraries.Component
             _produtoRepository = produtoRepository;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync() 
+        public async Task<IViewComponentResult> InvokeAsync()
         {
             int? pagina = 1;
             string pesquisa = "";
             string ordenacao = "A";
 
-            if(HttpContext.Request.Query.ContainsKey("pagina"))
+            if (HttpContext.Request.Query.ContainsKey("pagina"))
             {
                 pagina = int.Parse(HttpContext.Request.Query["pagina"]);
             }
@@ -34,8 +35,8 @@ namespace LojaVirtual.Libraries.Component
                 ordenacao = HttpContext.Request.Query["ordenacao"];
             }
 
-           var lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao);
-           return View(lista);
+            var viewModel = new ProdutoListagemViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao) };
+            return View(viewModel);
         }
     }
 }
