@@ -18,7 +18,7 @@ function MudarOrdenacao() {
 
         var URL = window.location.protocol + "//" + window.location.host +  window.location.pathname;
 
-        var URLComParametros = URL + "?pagina=" + Pagina + "&pesquisa=" + Pesquisa + "&ordenacao" + Ordenacao + "#ordenacao";
+        var URLComParametros = URL + "?pagina=" + Pagina + "&pesquisa=" + Pesquisa + "&ordenacao" + Ordenacao + "#myCarousel";
         window.location.href = URLComParametros;
 
     });
