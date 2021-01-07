@@ -44,7 +44,12 @@ namespace LojaVirtual.Repositories
         {
             return _banco.Categorias.Find(Id);
         }
-        
+
+        public Categoria ObterCategoria(string Slug)
+        {
+            return _banco.Categorias.Where(a => a.Slug == Slug).FirstOrDefault();
+        }
+
         public IPagedList<Categoria> ObterTodasCategorias(int? pagina)
         {
             int RegistroPorPagina = _conf.GetValue<int>("RegistroPorPagina");
