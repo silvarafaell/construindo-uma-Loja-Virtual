@@ -9,6 +9,28 @@ namespace LojaVirtual.Controllers
 {
     public class ProdutoController : Controller  //todo controlador erda da classe controller
     {
+        [HttpGet]
+        [Route("/Produto/Categoria/{slug}")]
+        public IActionResult ListagemCategoria(string slug)
+        {
+            //TODO - Criar algoritmo recursivo que obtem uma lista com todas as categorias que devem apresentar o produto.
+
+            //TODO - Adaptar o ProdutoRepository para receber uma lista de categorias e filtrar os produtos baseado nessa lista.
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
         /*
          * Todo metodo tem que resultar 
          * ActionResult ou

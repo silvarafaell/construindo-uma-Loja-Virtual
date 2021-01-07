@@ -24,7 +24,7 @@ namespace LojaVirtual.Models
          * URL normal: www.lojavirutal.com.br/categoria/5
          * URL Amigável e com Slug: www.lojavirtual.com.br/categoria/informatica (Url amigável)
          */
-
+         //TODO - Criar validação de Slug unico (Geracao automatica do Slug)
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")] //deixa o campo obrigatorio
         [MinLength(4, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")] //quantidade minima de caracteres
         public string Slug { get; set; }
