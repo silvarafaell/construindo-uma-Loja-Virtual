@@ -12,6 +12,7 @@ using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Http;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Libraries.Filtro;
+using LojaVirtual.Models.ViewsModels;
 
 namespace LojaVirtual.Controllers
 {
@@ -21,22 +22,26 @@ namespace LojaVirtual.Controllers
         private INewsletterRepository _repositoryNewsletter;
         private LoginCliente _loginCliente;
         private GerenciarEmail _gerenciarEmail;
-        public HomeController(IClienteRepository repositoryCliente, INewsletterRepository repositoryNewsletter, LoginCliente logincliente, GerenciarEmail gerenciarEmail)
+        private IProdutoRepository _produtoRepository;
+        public HomeController(IProdutoRepository produtoRepository, IClienteRepository repositoryCliente, INewsletterRepository repositoryNewsletter, LoginCliente logincliente, GerenciarEmail gerenciarEmail)
         {
             _repositoryCliente = repositoryCliente;
             _repositoryNewsletter = repositoryNewsletter;
             _loginCliente = logincliente;
             _gerenciarEmail = gerenciarEmail;
+            _produtoRepository = produtoRepository;
         }
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int? pagina, string pesquisa)
         {
-            return View();
+            var viewModel = new IndexViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa) };
+
+            return View(viewModel);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Index([FromForm] NewsletterEmail newsletter)
+        //[ValidateAntiForgeryToken]
+        public IActionResult Index(int? pagina, string pesquisa, [FromForm] NewsletterEmail newsletter)
         {
             if (ModelState.IsValid)
             {
@@ -48,7 +53,8 @@ namespace LojaVirtual.Controllers
             }
             else
             {
-                return View();
+                var viewModel = new IndexViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa) };
+                return View(viewModel);
             }
         }
 

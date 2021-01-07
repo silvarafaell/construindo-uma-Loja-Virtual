@@ -1,7 +1,4 @@
 ﻿@model LojaVirtual.Models.ViewsModels.IndexViewModel
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
 @{
 
     ViewData["Title"] = "Index";
@@ -77,40 +74,41 @@
         ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
-    <div class="container" id="code_prod_complex">
-        <div class="row">
-            @foreach (var produto in Model.lista)
-            {
-                <div class="col-md-4">
-                    <figure class="card card-product">
-                        <div class="img-wrap">
-                            @if (produto.Imagens != null && produto.Imagens.Count() > 0)
-                            {
-                                <img src="@produto.Imagens.ElementAt(0).Caminho" />
-                            }
-                            else
-                            {
-                                <img src="~/img/imagemproduto.jpg" />
-                            }
-                        </div>
-                        <figcaption class="info-wrap">
-                            <h4 class="title">@produto.Nome</h4>
-                        </figcaption>
-                        <div class="bottom-wrap">
-                            <a href="" class="btn btn-sm btn-primary float-right">Adicionar Carrinho</a>
-                            <div class="price-wrap h5">
-                                <span class="price-new">@produto.Valor.ToString("C")</span>
-                            </div> <!-- price-wrap.// -->
-                        </div> <!-- bottom-wrap.// -->
-                    </figure>
-                </div> <!-- col // -->
-            }
+    @if (Model.lista.Count > 0)
+    {
+        <div class="container" id="code_prod_complex">
+            <div class="row">
+                @foreach (var produto in Model.lista)
+                {
+                    <div class="col-md-3">
+                        <figure class="card card-product">
+                            <div class="img-wrap">
+                                @if (produto.Imagens != null && produto.Imagens.Count() > 0)
+                                {
+                                    <img src="@produto.Imagens.ElementAt(0).Caminho" />
+                                }
+                                else
+                                {
+                                    <img src="~/img/imagem-produto.png" />
+                                }
 
-
-        </div> <!-- row.// -->
-    </div>
-
-
+                            </div>
+                            <figcaption class="info-wrap">
+                                <h4 class="title">@produto.Nome</h4>
+                            </figcaption>
+                            <div class="bottom-wrap">
+                                <a href="" class="btn btn-sm btn-primary float-right">Adicionar Carrinho</a>
+                                <div class="price-wrap h5">
+                                    <span class="price-new">@produto.Valor.ToString("C")</span>
+                                </div> <!-- price-wrap.// -->
+                            </div> <!-- bottom-wrap.// -->
+                        </figure>
+                    </div> <!-- col // -->
+                }
+            </div> <!-- row.// -->
+            @Html.PagedListPager((IPagedList)Model.lista, pagina => Url.Action("Index", new { pagina }))
+        </div>
+    }
 </main>
 
 @{
@@ -124,7 +122,7 @@
      */
 }
 
-@using (Html.BeginForm(null, null, null, FormMethod.Post, false, new { @action = @Url.Action("index", "home") + "#formulario" }))
+@using (Html.BeginForm(null, null, null, FormMethod.Post, true, new { @action = @Url.Action("index", "home") + "#formulario" }))
 {
     <div class="container" id="formulario">
         <div class="col-sm-6 offset-sm-2">
