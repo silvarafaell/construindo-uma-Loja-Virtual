@@ -1,6 +1,15 @@
 ﻿$(document).ready(function () {
+    MoverScrollOrdenacao();
     MudarOrdenacao();
 });
+function MoverScrollOrdenacao() {
+    if (window.location.hash.length > 0) {
+        var hash = window.location.hash;
+        if (hash == "#posicaoproduto") {
+            window.scrollBy(0, 474);
+        }
+    }
+}
 function MudarOrdenacao() {
     $("#ordenacao").change(function () {
         //TODO - Redirecionar para a tela Home/Index passando as QueryString de Ordenação e mantendo a Pagina e a pesquisa.
