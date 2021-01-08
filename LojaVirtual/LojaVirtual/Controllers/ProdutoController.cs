@@ -20,9 +20,9 @@ namespace LojaVirtual.Controllers
 
         [HttpGet]
         [Route("/Produto/Categoria/{slug}")]
-        public IActionResult ListagemCategoria()
+        public IActionResult ListagemCategoria(string slug)
         {
-            return View();
+            return View(_categoriaRepository.ObterCategoria(slug));
         }
 
         /*
