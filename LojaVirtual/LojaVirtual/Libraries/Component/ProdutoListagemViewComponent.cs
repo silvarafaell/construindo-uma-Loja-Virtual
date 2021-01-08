@@ -1,4 +1,5 @@
-﻿using LojaVirtual.Models.ViewsModels;
+﻿using LojaVirtual.Models;
+using LojaVirtual.Models.ViewsModels;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,9 +12,11 @@ namespace LojaVirtual.Libraries.Component
     public class ProdutoListagemViewComponent : ViewComponent
     {
         private IProdutoRepository _produtoRepository;
-        public ProdutoListagemViewComponent(IProdutoRepository produtoRepository)
+        private ICategoriaRepository _categoriaRepository;
+        public ProdutoListagemViewComponent(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
         {
             _produtoRepository = produtoRepository;
+            _categoriaRepository = categoriaRepository;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
@@ -21,6 +24,7 @@ namespace LojaVirtual.Libraries.Component
             int? pagina = 1;
             string pesquisa = "";
             string ordenacao = "A";
+            IEnumerable<Categoria> categorias = null;
 
             if (HttpContext.Request.Query.ContainsKey("pagina"))
             {
@@ -34,8 +38,14 @@ namespace LojaVirtual.Libraries.Component
             {
                 ordenacao = HttpContext.Request.Query["ordenacao"];
             }
+            if (ViewContext.RouteData.Values.ContainsKey("slug"))
+            {
+                string slug = ViewContext.RouteData.Values["slug"].ToString();
+                Categoria CategoriaPrincipal = _categoriaRepository.ObterCategoria(slug);
+                categorias = _categoriaRepository.ObterCategoriasRecursivas(CategoriaPrincipal);
+            }
 
-            var viewModel = new ProdutoListagemViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao) };
+            var viewModel = new ProdutoListagemViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao, categorias) };
             return View(viewModel);
         }
     }
