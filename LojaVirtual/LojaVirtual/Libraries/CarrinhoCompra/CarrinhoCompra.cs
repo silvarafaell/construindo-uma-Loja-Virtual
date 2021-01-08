@@ -19,26 +19,49 @@ namespace LojaVirtual.Libraries.CarrinhoCompra
         //Adicionar Item, Remover Item, Alterar Quantidade
         public void Cadastrar(Item item)
         {
+            List<Item> Lista;
             if(_cookie.Existe(Key) )
             {
-                //Ler - Adicionar o Item no Carrinho Existente
+                 Lista = Consultar();
+                var ItemLocalizado = Lista.SingleOrDefault(a => a.Id == item.Id);
+
+                if (ItemLocalizado != null)
+                {
+                    Lista.Add(item);
+                }
+                else
+                {
+                    ItemLocalizado.Quantidade = ItemLocalizado.Quantidade + 1;
+                }
             }
             else
             {
-                //Criar o cookie com o item no Carrinho
+                Lista = new List<Item>();
+                Lista.Add(item);
             }
+            Salvar(Lista);
         }
-        public void Atualizar(string Key, string Valor)
+        public void Atualizar(Item item)
         {
-            if (Existe(Key))
+            var Lista = Consultar();
+            var ItemLocalizado = Lista.SingleOrDefault(a => a.Id == item.Id);
+
+            if (ItemLocalizado != null)
             {
-                Remover(Key);
+                ItemLocalizado.Quantidade = item.Quantidade;
+                Salvar(Lista);
             }
-            Cadastrar(Key, Valor);
         }
-        public void Remover(string Key)
+        public void Remover(Item item)
         {
-            _context.HttpContext.Response.Cookies.Delete(Key);
+            var Lista = Consultar();
+            var ItemLocalizado = Lista.SingleOrDefault(a => a.Id == item.Id);
+
+            if(ItemLocalizado != null)
+            {
+                Lista.Remove(ItemLocalizado);
+                Salvar(Lista);
+            }
         }
         public List<Item> Consultar()
         {
@@ -52,9 +75,16 @@ namespace LojaVirtual.Libraries.CarrinhoCompra
                 return new List<Item>();
             }
         }
+
+        public void Salvar(List<Item> Lista)
+        {
+            string Valor =  JsonConvert.SerializeObject(Lista);
+            _cookie.Cadastrar(Key, Valor);
+        }
+
         public bool Existe(string Key)
         {
-            if (_context.HttpContext.Request.Cookies[Key] == null)
+            if (_cookie.Existe(Key))
             {
                 return false;
             }
@@ -62,11 +92,7 @@ namespace LojaVirtual.Libraries.CarrinhoCompra
         }
         public void RemoverTodos()
         {
-            var ListaCookie = _context.HttpContext.Request.Cookies.ToList();
-            foreach (var cookie in ListaCookie)
-            {
-                Remover(cookie.Key);
-            }
+            _cookie.Remover(Key);
         }
     }
 
