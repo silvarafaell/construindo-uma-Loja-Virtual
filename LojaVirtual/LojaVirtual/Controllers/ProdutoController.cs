@@ -25,32 +25,11 @@ namespace LojaVirtual.Controllers
             return View(_categoriaRepository.ObterCategoria(slug));
         }
 
-        /*
-         * Todo metodo tem que resultar 
-         * ActionResult ou
-         * IActionResult
-        */
-
-        public ActionResult Visualizar()
+        [HttpGet]
+        public ActionResult Visualizar(int id)
         {
-            Produto produto = GetProduto();
-
-            return View(produto);  //passar o produto para a tela
-           //return new ContentResult() { Content = "<h3>Produto Visualizar<h3>", ContentType = "text/html" };
-            
-        }
-
-        private Produto GetProduto()
-        {
-            return new Produto()
-            {
-                Id = 1,
-                Nome = "Notebook para Programar",
-                Descricao = "Programar mais",
-                Valor = 4000.00M
-
-            };
-
+            return View(_produtoRepository.ObterProduto(id));  
+               
         }
 
     }
