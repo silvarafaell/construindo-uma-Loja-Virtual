@@ -79,6 +79,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
                 _produtoRepository.Atualizar(produto);
 
                 List<Imagem> ListaImagensDef = GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]), produto.Id);
+
                 _imagemRepository.ExcluirImagensDoProduto(produto.Id);
                 _imagemRepository.CadastrarImagens(ListaImagensDef, produto.Id);
 

@@ -22,10 +22,10 @@ function MudarOrdenacao() {
             Pagina = QueryString.get("pagina");
         }
         if (QueryString.has("pesquisa")) {
-            Pagina = QueryString.get("pesquisa");
+            Pesquisa = QueryString.get("pesquisa");
         }
 
-        var URL = window.location.protocol + "//" + window.location.host +  window.location.pathname;
+        var URL = window.location.protocol + "//" + window.location.host + window.location.pathname;
 
         var URLComParametros = URL + "?pagina=" + Pagina + "&pesquisa=" + Pesquisa + "&ordenacao" + Ordenacao + "#myCarousel";
         window.location.href = URLComParametros;
