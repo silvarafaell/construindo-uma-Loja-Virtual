@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Models;
+using LojaVirtual.Models.ProdutoAgregador;
 using Microsoft.EntityFrameworkCore; //referente ao banco
 using System;
 using System.Collections.Generic;
