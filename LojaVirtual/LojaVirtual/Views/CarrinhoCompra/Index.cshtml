@@ -54,14 +54,14 @@
                                     </div> <!-- price-wrap .// -->
                                 </td>
                                 <td class="text-right">
-                                    <a href="" class="btn btn-outline-danger"> × Remove</a>
+                                    <a asp-controller="CarrinhoCompra" asp-action="RemoverItem" asp-route-id="@item.Id" class="btn btn-outline-danger"> × Remove</a>
                                 </td>
                             </tr>
                         }                      
                     </tbody>
                 </table>
-            </div> <!-- card.// -->
-        </div> <!-- code-wrap.// -->
+            </div> 
+        </div> 
     </section>
 
 
