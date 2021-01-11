@@ -21,7 +21,26 @@ namespace LojaVirtual.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            List<ProdutoItem> produtoItemCarrinho = _carrinhoCompra.Consultar();
+
+            List<ProdutoItem> produtoItemCompleto = new List<ProdutoItem>();
+
+            foreach (var item in produtoItemCarrinho)
+            {
+                //TODO - Implementar AutoMapper
+                Produto produto = _produtoRepository.ObterProduto(item.Id);
+
+                ProdutoItem produtoItem = new ProdutoItem();
+                produtoItem.Id = produto.Id;
+                produtoItem.Nome = produto.Nome;
+                produtoItem.Imagens = produto.Imagens;
+                produtoItem.Valor= produto.Valor;
+                produtoItem.QuantidadeProdutoCarrinho = item.QuantidadeProdutoCarrinho;
+
+                produtoItemCompleto.Add(produtoItem);
+            }
+
+            return View(produtoItemCompleto);
         }
 
         //Item ID - ID Produto
