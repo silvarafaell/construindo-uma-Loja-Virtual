@@ -20,6 +20,7 @@ using System.Net.Mail;
 using System.Net;
 using LojaVirtual.Libraries.Email;
 using LojaVirtual.Libraries.Middleware;
+using LojaVirtual.Libraries.CarrinhoCompra;
 
 namespace LojaVirtual
 {
@@ -58,7 +59,8 @@ namespace LojaVirtual
             });
 
             services.AddScoped<GerenciarEmail>();
-
+            services.AddScoped<LojaVirtual.Libraries.Cookie.Cookie>();
+            services.AddScoped<CarrinhoCompra>();
 
 
             services.Configure<CookiePolicyOptions>(options =>
