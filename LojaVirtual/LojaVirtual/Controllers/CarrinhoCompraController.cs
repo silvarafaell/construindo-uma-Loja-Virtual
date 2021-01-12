@@ -7,6 +7,7 @@ using LojaVirtual.Models;
 using LojaVirtual.Models.ProdutoAgregador;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 
 namespace LojaVirtual.Controllers
 {
@@ -14,10 +15,12 @@ namespace LojaVirtual.Controllers
     {
         private CarrinhoCompra _carrinhoCompra;
         private IProdutoRepository _produtoRepository;
-        public CarrinhoCompraController(CarrinhoCompra carrinhoCompra, IProdutoRepository produtoRepository)
+        private IMapper _mapper;
+        public CarrinhoCompraController(CarrinhoCompra carrinhoCompra, IProdutoRepository produtoRepository, IMapper mapper)
         {
             _carrinhoCompra = carrinhoCompra;
             _produtoRepository = produtoRepository;
+            _mapper = mapper;
         }
         public IActionResult Index()
         {
@@ -27,14 +30,9 @@ namespace LojaVirtual.Controllers
 
             foreach (var item in produtoItemCarrinho)
             {
-                //TODO - Implementar AutoMapper
                 Produto produto = _produtoRepository.ObterProduto(item.Id);
 
-                ProdutoItem produtoItem = new ProdutoItem();
-                produtoItem.Id = produto.Id;
-                produtoItem.Nome = produto.Nome;
-                produtoItem.Imagens = produto.Imagens;
-                produtoItem.Valor= produto.Valor;
+                ProdutoItem produtoItem = _mapper.Map<ProdutoItem>(produto);
                 produtoItem.QuantidadeProdutoCarrinho = item.QuantidadeProdutoCarrinho;
 
                 produtoItemCompleto.Add(produtoItem);

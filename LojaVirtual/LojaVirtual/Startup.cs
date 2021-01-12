@@ -21,6 +21,8 @@ using System.Net;
 using LojaVirtual.Libraries.Email;
 using LojaVirtual.Libraries.Middleware;
 using LojaVirtual.Libraries.CarrinhoCompra;
+using AutoMapper;
+using LojaVirtual.Libraries.AutoMapper;
 
 namespace LojaVirtual
 {
@@ -36,6 +38,9 @@ namespace LojaVirtual
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //AutoMapper
+            services.AddAutoMapper(config=>config.AddProfile<MappingProfile>());
+
             //Padrão Repository
             services.AddHttpContextAccessor();
             services.AddScoped<IClienteRepository, ClienteRepository>();
@@ -45,7 +50,8 @@ namespace LojaVirtual
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IImagemRepository, ImagemRepository>();
             //SMTP
-            services.AddScoped<SmtpClient>(options=> {
+            services.AddScoped<SmtpClient>(options =>
+            {
 
                 SmtpClient smtp = new SmtpClient()
                 {
@@ -53,7 +59,7 @@ namespace LojaVirtual
                     Port = Configuration.GetValue<int>("Email:ServerPort"),
                     UseDefaultCredentials = false,
                     Credentials = new NetworkCredential(Configuration.GetValue<string>("Email:Username"), Configuration.GetValue<string>("Email:Password")),
-                    EnableSsl = true 
+                    EnableSsl = true
                 };
                 return smtp;
             });
@@ -71,8 +77,9 @@ namespace LojaVirtual
 
             //Session - configuração
             services.AddMemoryCache(); //Guardar os dados na memoria
-            services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromMinutes(10); 
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
             });
 
             services.AddScoped<Sessao>();
@@ -80,7 +87,8 @@ namespace LojaVirtual
             services.AddScoped<LoginCliente>();
             services.AddScoped<LoginColaborador>();
 
-            services.AddMvc(options => {
+            services.AddMvc(options =>
+            {
                 options.ModelBindingMessageProvider.SetAttemptedValueIsInvalidAccessor((x, y) => "O valor {0} não é válido para {1}.");
                 options.ModelBindingMessageProvider.SetMissingBindRequiredValueAccessor(x => "Não foi fornecido um valor para o campo {0}.");
                 options.ModelBindingMessageProvider.SetMissingKeyOrValueAccessor(() => "Campo obrigatório.");
@@ -136,7 +144,7 @@ namespace LojaVirtual
              *
              */
 
-            
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -148,7 +156,7 @@ namespace LojaVirtual
                     name: "default",
                     template: "/{controller=Home}/{action=Index}/{id?}");  //configuração pagina inicial
             });
-            
+
         }
     }
 }

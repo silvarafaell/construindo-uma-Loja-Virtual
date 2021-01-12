@@ -152,3 +152,7 @@ C:\Projetos\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netco
 C:\Projetos\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.pdb
 C:\Projetos\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.genruntimeconfig.cache
 C:\Projetos\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.CopyComplete
+C:\Users\francisco.silva\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\CarrinhoCompra\Index.g.cshtml.cs
+C:\Users\francisco.silva\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\CarrinhoCompra\NaoExisteItem.g.cshtml.cs
+C:\Users\francisco.silva\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Produto\ListagemCategoria.g.cshtml.cs
+C:\Users\francisco.silva\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Components\ProdutoListagem\Default.g.cshtml.cs
