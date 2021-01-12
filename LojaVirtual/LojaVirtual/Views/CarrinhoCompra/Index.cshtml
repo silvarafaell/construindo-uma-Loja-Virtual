@@ -5,7 +5,8 @@
 
 <div class="container">
     <section id="order">
-
+        <br />
+        <br />
         <h2 class="title-doc">Carrinho de compras</h2>
 
         <div id="code_cart">
@@ -33,8 +34,8 @@
                                                 <dd>XXL</dd>
                                             </dl>
                                             <dl class="dlist-inline small">
-                                                <dt>Color: </dt>
-                                                <dd>Orange color</dd>
+                                                <dt>Quantidade </dt>
+                                                <dd>@item.QuantidadeProdutoCarrinho</dd>
                                             </dl>
                                         </figcaption>
                                     </figure>
@@ -57,11 +58,11 @@
                                     <a asp-controller="CarrinhoCompra" asp-action="RemoverItem" asp-route-id="@item.Id" class="btn btn-outline-danger"> × Remove</a>
                                 </td>
                             </tr>
-                        }                      
+                        }
                     </tbody>
                 </table>
-            </div> 
-        </div> 
+            </div>
+        </div>
     </section>
 
 

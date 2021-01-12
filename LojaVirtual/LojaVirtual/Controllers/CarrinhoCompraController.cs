@@ -52,7 +52,6 @@ namespace LojaVirtual.Controllers
             }
             else
             {
-                //TODO - Caso o produto ja exista, deve ser adicionada um quantidade maior ao inves de um novo objeto a lista
                 var item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = 1 };
                 _carrinhoCompra.Cadastrar(item);
                 return RedirectToAction(nameof(Index));
