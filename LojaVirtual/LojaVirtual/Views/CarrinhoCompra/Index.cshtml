@@ -1,6 +1,7 @@
 ﻿@model List<LojaVirtual.Models.ProdutoAgregador.ProdutoItem>
 @{
     ViewData["Title"] = "Index";
+    decimal Subtotal = 0;
 }
 
 <div class="container">
@@ -54,11 +55,15 @@
                                         </div>
                                     </div>
                                 </td>
+                                @{ 
+                                    var ResultadoSubtotalItem = item.Valor * item.QuantidadeProdutoCarrinho;
+                                    Subtotal = Subtotal + ResultadoSubtotalItem;
+                                 }
                                 <td>
                                     <div class="price-wrap">
-                                        <var class="price">@((item.Valor * item.QuantidadeProdutoCarrinho).ToString("C"))</var>
+                                        <var class="price">@(ResultadoSubtotalItem.ToString("C"))</var>
                                         <small class="text-muted">@item.Valor.ToString("C") cada)</small>
-                                    </div> <!-- price-wrap .// -->
+                                    </div> 
                                 </td>
                                 <td class="text-right">
                                     <a asp-controller="CarrinhoCompra" asp-action="RemoverItem" asp-route-id="@item.Id" class="btn btn-outline-danger"> × Remove</a>
@@ -106,7 +111,7 @@
                     <div class="box">
                         <dl class="dlist-align">
                             <dt>Subtotal: </dt>
-                            <dd class="text-right">R$ 120,00</dd>
+                            <dd class="text-right subtotal">@Subtotal.ToString("C")</dd>
                         </dl>
                         <dl class="dlist-align">
                             <dt>Frete:</dt>
