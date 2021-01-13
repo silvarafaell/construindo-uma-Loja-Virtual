@@ -9,10 +9,10 @@ function MudarQuantidadeProdutoCarrinho() {
         //var pai = $(this).parent().parent();
         if ($(this).hasClass("diminuir")) {
             LogicaMudarQuantidadeProdutoUnitarioCarrinho("diminuir", $(this));
-           //var id = pai.find(".inputProdutoId").val();    
+            //var id = pai.find(".inputProdutoId").val();    
         }
         if ($(this).hasClass("aumentar")) {
-            LogicaMudarQuantidadeProdutoUnitarioCarrinho("aumentar", $(this));   
+            LogicaMudarQuantidadeProdutoUnitarioCarrinho("aumentar", $(this));
         }
     });
 }
@@ -21,8 +21,8 @@ function LogicaMudarQuantidadeProdutoUnitarioCarrinho(operacao, botao) {
     var pai = botao.parent().parent();
 
     var produtoId = pai.find(".inputProdutoId").val();
-    var quantidadeEstoque = pai.find(".inputQuantidadeEstoque").val();
-    var valorUnitario = pai.find(".inputValorUnitario").val();
+    var quantidadeEstoque = parseInt(pai.find(".inputQuantidadeEstoque").val());
+    var valorUnitario = parseFloat(pai.find(".inputValorUnitario").val());
 
     var campoQuantidadeProdutoCarrinho = pai.find(".inputQuantidadeProdutoCarrinho");
     var quantidadeProdutoCarrinho = parseInt(campoQuantidadeProdutoCarrinho.val());
@@ -31,15 +31,27 @@ function LogicaMudarQuantidadeProdutoUnitarioCarrinho(operacao, botao) {
 
     //TODO - Adicionar validações
     if (operacao == "aumentar") {
-        quantidadeProdutoCarrinho++;
-        campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
+        if (quantidadeProdutoCarrinho == quantidadeEstoque) {
+            alert("Opps! Não possuimos em estoque suficiente para a quantidade que voce deseja comprar!");
+        }
+        else {
 
-        campoValor.text(valorUnitario * quantidadeProdutoCarrinho);
+            quantidadeProdutoCarrinho++;
+            campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
+
+            campoValor.text(valorUnitario * quantidadeProdutoCarrinho);
+        }
     } else if (operacao == "diminuir") {
-        quantidadeProdutoCarrinho--;
-        campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
+        if (quantidadeProdutoCarrinho == 1) {
+            alert("Opps! Caso não deseje este produto clique no botão Remover!");
 
-        campoValor.text(valorUnitario * quantidadeProdutoCarrinho);
+        }
+        else {
+            quantidadeProdutoCarrinho--;
+            campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
+
+            campoValor.text(valorUnitario * quantidadeProdutoCarrinho);
+        }      
     }
 
     //TODO - Atualizr o subtotal do produto
