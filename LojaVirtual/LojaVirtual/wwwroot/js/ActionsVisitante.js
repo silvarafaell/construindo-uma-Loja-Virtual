@@ -6,7 +6,7 @@
 });
 function MudarQuantidadeProdutoCarrinho() {
     $("#order .btn-primary").click(function () {
-        var pai = $(this).parent().parent();
+        //var pai = $(this).parent().parent();
         if ($(this).hasClass("diminuir")) {
             LogicaMudarQuantidadeProdutoUnitarioCarrinho("diminuir", $(this));
            //var id = pai.find(".inputProdutoId").val();    
@@ -18,6 +18,31 @@ function MudarQuantidadeProdutoCarrinho() {
 }
 function LogicaMudarQuantidadeProdutoUnitarioCarrinho(operacao, botao) {
 
+    var pai = botao.parent().parent();
+
+    var produtoId = pai.find(".inputProdutoId").val();
+    var quantidadeEstoque = pai.find(".inputQuantidadeEstoque").val();
+    var valorUnitario = pai.find(".inputValorUnitario").val();
+
+    var campoQuantidadeProdutoCarrinho = pai.find(".inputQuantidadeProdutoCarrinho");
+    var quantidadeProdutoCarrinho = parseInt(campoQuantidadeProdutoCarrinho.val());
+
+    var campoValor = botao.parent().parent().parent().parent().parent().find(".price");
+
+    //TODO - Adicionar validações
+    if (operacao == "aumentar") {
+        quantidadeProdutoCarrinho++;
+        campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
+
+        campoValor.text(valorUnitario * quantidadeProdutoCarrinho);
+    } else if (operacao == "diminuir") {
+        quantidadeProdutoCarrinho--;
+        campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
+
+        campoValor.text(valorUnitario * quantidadeProdutoCarrinho);
+    }
+
+    //TODO - Atualizr o subtotal do produto
 }
 function MudarImagePrincipalProduto() {
     $(".img-small-wrap img").click(function () {
