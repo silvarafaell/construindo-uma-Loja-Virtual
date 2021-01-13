@@ -60,10 +60,10 @@ namespace LojaVirtual.Controllers
 
         public IActionResult AlterarQuantidade(int id, int quantidade)
         {
+            //TODO - Validar se existe quantidade no estoque
             var item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = quantidade};
             _carrinhoCompra.Atualizar(item);
             return RedirectToAction(nameof(Index));
-
         }
 
         public IActionResult RemoverItem(int id)

@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Cyg0jLUq9IQMdp0MQjIKrPsmGykP6B/qSKqqBbkOA9WzIvIJpCuH8GdCTG+OZE38eeLVyhAI2dnfW7Izueu8Ig==",
+  "dgSpecHash": "1PXuqXNEUQKd/p5nITsVCR6nT7oOlqjtCIjuUR/i4XifE9aMvGdvalnl2o8V6Gfyppjpofc0409SFU2WuoromA==",
   "success": true,
   "projectFilePath": "C:\\Projetos\\construindo-uma-Loja-Virtual\\LojaVirtual\\LojaVirtual\\LojaVirtual.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Rafael\\.nuget\\packages\\automapper\\8.1.0\\automapper.8.1.0.nupkg.sha512",
+    "C:\\Users\\Rafael\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.1.0\\automapper.extensions.microsoft.dependencyinjection.6.1.0.nupkg.sha512",
     "C:\\Users\\Rafael\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Users\\Rafael\\.nuget\\packages\\microsoft.aspnetcore\\2.2.0\\microsoft.aspnetcore.2.2.0.nupkg.sha512",
     "C:\\Users\\Rafael\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",

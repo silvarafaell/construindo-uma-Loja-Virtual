@@ -8,21 +8,16 @@ function MudarQuantidadeProdutoCarrinho() {
     $("#order .btn-primary").click(function () {
         var pai = $(this).parent().parent();
         if ($(this).hasClass("diminuir")) {
-
-            var id = pai.find(".inputProdutoId").val();
-
-            alert("Clicou no botão - :" + id);
-           
+            LogicaMudarQuantidadeProdutoUnitarioCarrinho("diminuir", $(this));
+           //var id = pai.find(".inputProdutoId").val();    
         }
         if ($(this).hasClass("aumentar")) {
-
-            var id = pai.find(".inputProdutoId").val();
-
-            alert("Clicou no botão + :" + id);
-            
+            LogicaMudarQuantidadeProdutoUnitarioCarrinho("aumentar", $(this));   
         }
-
     });
+}
+function LogicaMudarQuantidadeProdutoUnitarioCarrinho(operacao, botao) {
+
 }
 function MudarImagePrincipalProduto() {
     $(".img-small-wrap img").click(function () {
