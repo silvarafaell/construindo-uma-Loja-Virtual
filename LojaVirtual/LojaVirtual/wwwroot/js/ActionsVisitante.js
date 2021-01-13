@@ -21,7 +21,7 @@ function MudarQuantidadeProdutoCarrinho() {
     });
 }
 function OrquestradorDeAcoesProduto(operacao, botao) {
-
+    OcultarMensagemDeErro();
     /*
      * Carregamento dos valores
      */
@@ -89,6 +89,15 @@ function AJAXComunicarAlteracaoQuantidadeProduto(produto) {
             
         }
     });
+}
+function MostrarMensagemDeErro() {
+    $(".alert-danger").css("display", "block");
+    $(".alert-danger").text(mensagem);
+
+    setTimeout(OcultarMensagemDeErro, 5000);
+}
+function OcultarMensagemDeErro() {
+    $(".alert-danger").css("display", "none");
 }
 function AtualizarQuantidadeEValor(produto) {
     produto.campoQuantidadeProdutoCarrinho.val(produto.quantidadeProdutoCarrinhoNova);
