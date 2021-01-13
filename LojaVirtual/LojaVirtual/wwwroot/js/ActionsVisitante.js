@@ -55,10 +55,7 @@ function AlteracoesVisuaisProdutoCarrinho(produto, operacao) {
         else {
             produto.quantidadeProdutoCarrinhoNova = produto.quantidadeProdutoCarrinhoAntiga + 1;
 
-            produto.campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinhoNova);
-
-            var resultado = produto.valorUnitario * quantidadeProdutoCarrinhoNova;
-            produto.campoValor.text(numberToReal(resultado));
+            AtualizarQuantidadeEValor(produto);
         }
     } else if (operacao == "diminuir") {
         if (produto.quantidadeProdutoCarrinhoAntiga == 1) {
@@ -66,14 +63,16 @@ function AlteracoesVisuaisProdutoCarrinho(produto, operacao) {
         }
         else {
             produto.quantidadeProdutoCarrinhoNova = produto.quantidadeProdutoCarrinhoAntiga - 1;
-            campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
-
-            produto.campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinhoNova);
-
-            var resultado = produto.valorUnitario * quantidadeProdutoCarrinhoNova;
-            produto.campoValor.text(numberToReal(resultado));
+            
+            AtualizarQuantidadeEValor(produto);
         }
     }
+}
+function AtualizarQuantidadeEValor(produto) {
+    produto.campoQuantidadeProdutoCarrinho.val(produto.quantidadeProdutoCarrinhoNova);
+
+    var resultado = produto.valorUnitario * produto.quantidadeProdutoCarrinhoNova;
+    produto.campoValor.text(numberToReal(resultado));
 }
 function MudarImagePrincipalProduto() {
     $(".img-small-wrap img").click(function () {
