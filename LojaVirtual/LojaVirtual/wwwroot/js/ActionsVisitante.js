@@ -49,10 +49,11 @@ function OrquestradorDeAcoesProduto(operacao, botao) {
 }
 function AlteracoesVisuaisProdutoCarrinho(produto, operacao) {
     if (operacao == "aumentar") {
-        if (produto.quantidadeProdutoCarrinhoAntiga == produto.quantidadeEstoque) {
-            alert("Opps! Não possuimos em estoque suficiente para a quantidade que voce deseja comprar!");
-        }
-        else {
+        //if (produto.quantidadeProdutoCarrinhoAntiga == produto.quantidadeEstoque) {
+        //    alert("Opps! Não possuimos em estoque suficiente para a quantidade que voce deseja comprar!");
+        //}
+        //else 
+        {
             produto.quantidadeProdutoCarrinhoNova = produto.quantidadeProdutoCarrinhoAntiga + 1;
 
             AtualizarQuantidadeEValor(produto);
@@ -60,10 +61,11 @@ function AlteracoesVisuaisProdutoCarrinho(produto, operacao) {
             AJAXComunicarAlteracaoQuantidadeProduto(produto);
         }
     } else if (operacao == "diminuir") {
-        if (produto.quantidadeProdutoCarrinhoAntiga == 1) {
-            alert("Opps! Caso não deseje este produto clique no botão Remover!");
-        }
-        else {
+        //if (produto.quantidadeProdutoCarrinhoAntiga == 1) {
+        //    alert("Opps! Caso não deseje este produto clique no botão Remover!");
+        //}
+        //else 
+        {
             produto.quantidadeProdutoCarrinhoNova = produto.quantidadeProdutoCarrinhoAntiga - 1;
             
             AtualizarQuantidadeEValor(produto);
@@ -77,8 +79,8 @@ function AJAXComunicarAlteracaoQuantidadeProduto(produto) {
         type: "GET",
         url: "/CarrinhoCompra/AlterarQuantidade?id=" + produto.produtoId + "&quantidade" + produto.quantidadeProdutoCarrinhoNova,
         error: function (data) {
-            alert("Opps! Tivemos um erro!" + data);
-
+            alert(data.responseJSON.mensagem);
+            console.info(data);
             //Rollback
             produto.quantidadeProdutoCarrinhoNova = produto.quantidadeProdutoCarrinhoAntiga;
             AtualizarQuantidadeEValor(produto);

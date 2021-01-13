@@ -8,6 +8,7 @@ using LojaVirtual.Models.ProdutoAgregador;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
+using LojaVirtual.Libraries.Lang;
 
 namespace LojaVirtual.Controllers
 {
@@ -60,10 +61,22 @@ namespace LojaVirtual.Controllers
 
         public IActionResult AlterarQuantidade(int id, int quantidade)
         {
-            //TODO - Validar se existe quantidade no estoque
-            var item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = quantidade};
-            _carrinhoCompra.Atualizar(item);
-            return Ok();
+            Produto produto = _produtoRepository.ObterProduto(id);
+            if(quantidade < 1)
+            {
+                return BadRequest(new { mensagem = Mensagem.MSG_E007 });
+            }
+            else if (quantidade > produto.Quantidade)
+            {
+                return BadRequest(new { mensagem = Mensagem.MSG_E008 });
+            }
+            else
+            {
+                var item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = quantidade };
+                _carrinhoCompra.Atualizar(item);
+                return Ok(new { mensagem = Mensagem.MSG_S001});
+            }
+        
         }
 
         public IActionResult RemoverItem(int id)
