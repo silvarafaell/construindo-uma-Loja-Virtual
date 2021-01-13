@@ -4,12 +4,16 @@
     MudarImagePrincipalProduto();
     MudarQuantidadeProdutoCarrinho();
 });
+function numberToReal(numero) {
+    //console.info(numero);
+    var numero = numero.toFixed(2).split('.');
+    numero[0] = "R$ " + numero[0].split(/(?=(?:...)*$)/).join('.');
+    return numero.join(',');
+}
 function MudarQuantidadeProdutoCarrinho() {
     $("#order .btn-primary").click(function () {
-        //var pai = $(this).parent().parent();
         if ($(this).hasClass("diminuir")) {
-            LogicaMudarQuantidadeProdutoUnitarioCarrinho("diminuir", $(this));
-            //var id = pai.find(".inputProdutoId").val();    
+            LogicaMudarQuantidadeProdutoUnitarioCarrinho("diminuir", $(this));  
         }
         if ($(this).hasClass("aumentar")) {
             LogicaMudarQuantidadeProdutoUnitarioCarrinho("aumentar", $(this));
@@ -22,7 +26,7 @@ function LogicaMudarQuantidadeProdutoUnitarioCarrinho(operacao, botao) {
 
     var produtoId = pai.find(".inputProdutoId").val();
     var quantidadeEstoque = parseInt(pai.find(".inputQuantidadeEstoque").val());
-    var valorUnitario = parseFloat(pai.find(".inputValorUnitario").val());
+    var valorUnitario = parseFloat(pai.find(".inputValorUnitario").val().replace(",","."));
 
     var campoQuantidadeProdutoCarrinho = pai.find(".inputQuantidadeProdutoCarrinho");
     var quantidadeProdutoCarrinho = parseInt(campoQuantidadeProdutoCarrinho.val());
@@ -39,7 +43,8 @@ function LogicaMudarQuantidadeProdutoUnitarioCarrinho(operacao, botao) {
             quantidadeProdutoCarrinho++;
             campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
 
-            campoValor.text(valorUnitario * quantidadeProdutoCarrinho);
+            var resultado = valorUnitario * quantidadeProdutoCarrinho;
+            campoValor.text(numberToReal(resultado));
         }
     } else if (operacao == "diminuir") {
         if (quantidadeProdutoCarrinho == 1) {
@@ -50,7 +55,8 @@ function LogicaMudarQuantidadeProdutoUnitarioCarrinho(operacao, botao) {
             quantidadeProdutoCarrinho--;
             campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
 
-            campoValor.text(valorUnitario * quantidadeProdutoCarrinho);
+            var resultado = valorUnitario * quantidadeProdutoCarrinho;
+            campoValor.text(numberToReal(resultado));
         }      
     }
 
