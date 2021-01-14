@@ -23,6 +23,8 @@ using LojaVirtual.Libraries.Middleware;
 using LojaVirtual.Libraries.CarrinhoCompra;
 using AutoMapper;
 using LojaVirtual.Libraries.AutoMapper;
+using LojaVirtual.Libraries.Gerenciador.Frete;
+using WSCorreios;
 
 namespace LojaVirtual
 {
@@ -64,13 +66,18 @@ namespace LojaVirtual
                 return smtp;
             });
 
+            services.AddScoped<CalcPrecoPrazoWSSoap>(options => {
+                var servico = new CalcPrecoPrazoWSSoapClient(CalcPrecoPrazoWSSoapClient.EndpointConfiguration.CalcPrecoPrazoWSSoap);
+                return servico;
+            });
             services.AddScoped<GerenciarEmail>();
             services.AddScoped<LojaVirtual.Libraries.Cookie.Cookie>();
             services.AddScoped<CarrinhoCompra>();
+            services.AddScoped<WSCorreiosCalcularFrete>();
 
 
             services.Configure<CookiePolicyOptions>(options =>
-            {
+            {              
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
