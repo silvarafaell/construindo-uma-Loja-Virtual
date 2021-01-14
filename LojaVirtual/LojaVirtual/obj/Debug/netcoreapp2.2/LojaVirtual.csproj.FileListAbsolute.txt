@@ -79,7 +79,6 @@ C:\Users\francisco.silva\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\ob
 C:\Users\francisco.silva\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\_ViewImports.g.cshtml.cs
 C:\Users\francisco.silva\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\_ViewStart.g.cshtml.cs
 C:\Users\francisco.silva\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\CadastroCliente.g.cshtml.cs
-C:\Users\francisco.silva\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\CarrinhoCompras.g.cshtml.cs
 C:\Users\francisco.silva\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\Categoria.g.cshtml.cs
 C:\Users\francisco.silva\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\Contato.g.cshtml.cs
 C:\Users\francisco.silva\construindo-uma-Loja-Virtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
