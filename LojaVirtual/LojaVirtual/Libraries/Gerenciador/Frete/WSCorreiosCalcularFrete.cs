@@ -18,13 +18,23 @@ namespace LojaVirtual.Libraries.Gerenciador.Frete
             _servico = servico;
         }
 
-        public void CalcularValorPrazoFrete(String cepDestino, String tipoFrete, Pacote pacote)
+        public async Task CalcularValorPrazoFrete(String cepDestino, String tipoFrete, Pacote pacote)
         {
             var cepOrigem = _configuration.GetValue<String>("Frete:CepOrigem");
             var maoPropria = _configuration.GetValue<String>("Frete:MaoPropria");
             var avisoRecebimento = _configuration.GetValue<String>("Frete:AvisoRecebimento");
+            var diametro = Math.Max(Math.Max(pacote.Comprimento, pacote.Largura), pacote.Altura);
 
-            _servico.CalcPrecoPrazoAsync("", "", tipoFrete);
+           cResultado resultado = await _servico.CalcPrecoPrazoAsync("", "", tipoFrete, cepOrigem, cepDestino, pacote.Peso.ToString(), 1, pacote.Comprimento, pacote.Altura, pacote.Largura, diametro, maoPropria, 0, avisoRecebimento);
+
+            if(resultado.Servicos[0].Erro == "0")
+            {
+
+            }
+            else
+            {
+                throw new Exception("Erro: " + resultado.Servicos[0].MsgErro);
+            }
         }
     }
 }
