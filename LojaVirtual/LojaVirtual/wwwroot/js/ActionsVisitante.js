@@ -15,6 +15,16 @@ function AJAXCalcularFrete() {
         var cep = $(".cep").val().replace(".", "").replace("-", "");
 
         //TODO - Fazer uma requisição AJAX
+        $.ajax({
+            type: "GET",
+            url: "/CarrinhoCompra/CalcularFrete?cepDestino=" + cep,
+            error: function (data) {
+
+            },
+            success: function (data) {
+                
+            }
+        });
     });
 }
 function numberToReal(numero) {
