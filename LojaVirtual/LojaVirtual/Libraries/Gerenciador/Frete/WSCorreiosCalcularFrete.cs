@@ -18,7 +18,27 @@ namespace LojaVirtual.Libraries.Gerenciador.Frete
             _servico = servico;
         }
 
-        public async Task CalcularValorPrazoFrete(String cepDestino, String tipoFrete, Pacote pacote)
+        public async Task<List<ValorPrazoFrete>> CalcularFrete(String cepDestino, String tipoFrete, List<Pacote> pacotes)
+        {
+            List<ValorPrazoFrete> ValorDosPacotesPorFrete = new List<ValorPrazoFrete>();
+
+            foreach (var pacote in pacotes) 
+            {
+                ValorDosPacotesPorFrete.Add(await CalcularValorPrazoFrete(cepDestino, tipoFrete, pacote));
+            }
+
+            List<ValorPrazoFrete> ValorDosFretes = ValorDosPacotesPorFrete
+                .GroupBy(a => a.TipoFrete)
+                .Select(list => new ValorPrazoFrete
+                {
+                    TipoFrete = list.First().TipoFrete,
+                    Prazo = list.Max(c => c.Prazo),
+                    Valor = list.Max(c => c.Valor)
+                }).ToList();
+
+            return ValorDosFretes;
+        }
+        private async Task<ValorPrazoFrete> CalcularValorPrazoFrete(String cepDestino, String tipoFrete, Pacote pacote)
         {
             var cepOrigem = _configuration.GetValue<String>("Frete:CepOrigem");
             var maoPropria = _configuration.GetValue<String>("Frete:MaoPropria");
@@ -29,7 +49,12 @@ namespace LojaVirtual.Libraries.Gerenciador.Frete
 
             if(resultado.Servicos[0].Erro == "0")
             {
-
+                return new ValorPrazoFrete()
+                {
+                    TipoFrete = tipoFrete,
+                    Prazo = int.Parse(resultado.Servicos[0].PrazoEntrega),
+                    Valor = double.Parse(resultado.Servicos[0].Valor.Replace(".", "").Replace(",", "."))
+                };
             }
             else
             {
