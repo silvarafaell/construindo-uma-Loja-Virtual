@@ -18,7 +18,7 @@ namespace LojaVirtual.Libraries.Gerenciador.Frete
             _servico = servico;
         }
 
-        public async Task<List<ValorPrazoFrete>> CalcularFrete(String cepDestino, String tipoFrete, List<Pacote> pacotes)
+        public async Task<ValorPrazoFrete> CalcularFrete(String cepDestino, String tipoFrete, List<Pacote> pacotes)
         {
             List<ValorPrazoFrete> ValorDosPacotesPorFrete = new List<ValorPrazoFrete>();
 
@@ -27,14 +27,14 @@ namespace LojaVirtual.Libraries.Gerenciador.Frete
                 ValorDosPacotesPorFrete.Add(await CalcularValorPrazoFrete(cepDestino, tipoFrete, pacote));
             }
 
-            List<ValorPrazoFrete> ValorDosFretes = ValorDosPacotesPorFrete
+            ValorPrazoFrete ValorDosFretes = ValorDosPacotesPorFrete
                 .GroupBy(a => a.TipoFrete)
                 .Select(list => new ValorPrazoFrete
                 {
                     TipoFrete = list.First().TipoFrete,
                     Prazo = list.Max(c => c.Prazo),
                     Valor = list.Max(c => c.Valor)
-                }).ToList();
+                }).ToList().First();
 
             return ValorDosFretes;
         }

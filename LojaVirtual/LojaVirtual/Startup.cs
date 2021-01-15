@@ -73,6 +73,7 @@ namespace LojaVirtual
             services.AddScoped<GerenciarEmail>();
             services.AddScoped<LojaVirtual.Libraries.Cookie.Cookie>();
             services.AddScoped<CarrinhoCompra>();
+            services.AddScoped<CalcularPacote>();
             services.AddScoped<WSCorreiosCalcularFrete>();
 
 
