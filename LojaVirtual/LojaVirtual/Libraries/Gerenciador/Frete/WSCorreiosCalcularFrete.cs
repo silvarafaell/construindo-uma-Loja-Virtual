@@ -24,10 +24,15 @@ namespace LojaVirtual.Libraries.Gerenciador.Frete
 
             foreach (var pacote in pacotes) 
             {
-                ValorDosPacotesPorFrete.Add(await CalcularValorPrazoFrete(cepDestino, tipoFrete, pacote));
+                var resultado = await CalcularValorPrazoFrete(cepDestino, tipoFrete, pacote);
+
+                if(resultado != null)
+                ValorDosPacotesPorFrete.Add(resultado);
             }
 
-            ValorPrazoFrete ValorDosFretes = ValorDosPacotesPorFrete
+            if(ValorDosPacotesPorFrete.Count > 0)
+            {
+                ValorPrazoFrete ValorDosFretes = ValorDosPacotesPorFrete
                 .GroupBy(a => a.TipoFrete)
                 .Select(list => new ValorPrazoFrete
                 {
@@ -36,7 +41,11 @@ namespace LojaVirtual.Libraries.Gerenciador.Frete
                     Valor = list.Max(c => c.Valor)
                 }).ToList().First();
 
-            return ValorDosFretes;
+                return ValorDosFretes;
+            }
+
+            return null;
+            
         }
         private async Task<ValorPrazoFrete> CalcularValorPrazoFrete(String cepDestino, String tipoFrete, Pacote pacote)
         {
@@ -55,6 +64,10 @@ namespace LojaVirtual.Libraries.Gerenciador.Frete
                     Prazo = int.Parse(resultado.Servicos[0].PrazoEntrega),
                     Valor = double.Parse(resultado.Servicos[0].Valor.Replace(".", "").Replace(",", "."))
                 };
+            }
+            else if(resultado.Servicos[0].Erro == "008")
+            {
+                return null;
             }
             else
             {

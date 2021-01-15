@@ -25,8 +25,7 @@ namespace LojaVirtual.Libraries.Gerenciador.Frete
 
                     var dimensao = comprimento + largura + altura;
 
-                    //TODO - Criar novo pacote caso : 30 kg, Dimensao > 200cm
-                    if(peso > 30 || dimensao > 200 || pacote.Altura > 105 || pacote.Comprimento > 105 || pacote.Largura > 105)
+                    if(peso > 30 || dimensao > 200 || altura > 105 || comprimento > 105 || largura > 105)
                     {
                         pacotes.Add(pacote);
                         pacote = new Pacote();
