@@ -65,8 +65,9 @@ namespace LojaVirtual.Libraries.Gerenciador.Frete
                     Valor = double.Parse(resultado.Servicos[0].Valor.Replace(".", "").Replace(",", "."))
                 };
             }
-            else if(resultado.Servicos[0].Erro == "008")
+            else if(resultado.Servicos[0].Erro == "008" || resultado.Servicos[0].Erro == "-888")
             {
+                //EX: SEDEX10 - não entrega naquela regiao 
                 return null;
             }
             else
