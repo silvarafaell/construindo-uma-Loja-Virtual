@@ -18,6 +18,7 @@ function AcaoCalcularFreteBTN() {
     });
 }
 function AJAXCalcularFrete(callByButton) {
+    $(".btn-continuar").addClass("disabled");
     if (callByButton == false) {
         if ($.cookie('Carrinho.CEP') != undefined) {
             $(".cep").val($.cookie('Carrinho.CEP'));
@@ -53,10 +54,13 @@ function AJAXCalcularFrete(callByButton) {
                 }
                 $(".container-frete").html(html);
                 $(".container-frete").find("input[type-radio]").change(function () {
-                    var valorFrete = parseFloat($(this).parent().find("input[type=hidden]").val());
 
                     $.cookie("Carrinho.TipoFrete", $(this).val());
+                    $(".btn-continuar").removeClass("disabled");
 
+                    var valorFrete = parseFloat($(this).parent().find("input[type=hidden]").val());
+
+                    
                     $(".frete").text(numberToReal(valorFrete));
 
                     var subtotal = parseFloat($(".subtotal").text().replace("R$", "").replace(".", "").replace(",", "."));
