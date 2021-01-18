@@ -5,16 +5,24 @@
     MudarQuantidadeProdutoCarrinho();
 
     MascaraCEP();
+    AcaoCalcularFreteBTN();
     AJAXCalcularFrete();
 });
 function MascaraCEP() {
     $(".cep").mask("00.000-00");
 }
-function AJAXCalcularFrete() {
+function AcaoCalcularFreteBTN() {
     $(".btn-calcular-frete").click(function () {
-        var cep = $(".cep").val().replace(".", "").replace("-", "");
+        AJAXCalcularFrete();
+    });
+}
+function AJAXCalcularFrete() {
+    var cep = $(".cep").val().replace(".", "").replace("-", "");
 
-        //TODO - Fazer uma requisição AJAX
+    if (cep.length == "8") {
+
+        $(".container-frete").html("<img src='\img\loading.gif' />");
+
         $.ajax({
             type: "GET",
             url: "/CarrinhoCompra/CalcularFrete?cepDestino=" + cep,
@@ -22,9 +30,8 @@ function AJAXCalcularFrete() {
                 MostrarMensagemDeErro("Opps! Tivemos um erro ao obter o frete..." + data.Message);
             },
             success: function (data) {
-                $(".container-frete").html("");
-
                 html = "";
+
                 for (var i = 0; i < data.length; i++) {
                     var tipoFrete = data[i].tipoFrete;
                     var valor = data[i].valor;
@@ -35,7 +42,9 @@ function AJAXCalcularFrete() {
                 $(".container-frete").html(html);
             }
         });
-    });
+    } else {
+        MostrarMensagemDeErro("Digite o CEP para calcular o Frete!");
+    }
 }
 function numberToReal(numero) {
     //console.info(numero);
@@ -46,7 +55,7 @@ function numberToReal(numero) {
 function MudarQuantidadeProdutoCarrinho() {
     $("#order .btn-primary").click(function () {
         if ($(this).hasClass("diminuir")) {
-            OrquestradorDeAcoesProduto("diminuir", $(this));  
+            OrquestradorDeAcoesProduto("diminuir", $(this));
         }
         if ($(this).hasClass("aumentar")) {
             OrquestradorDeAcoesProduto("aumentar", $(this));
@@ -62,7 +71,7 @@ function OrquestradorDeAcoesProduto(operacao, botao) {
 
     var produtoId = pai.find(".inputProdutoId").val();
     var quantidadeEstoque = parseInt(pai.find(".inputQuantidadeEstoque").val());
-    var valorUnitario = parseFloat(pai.find(".inputValorUnitario").val().replace(",","."));
+    var valorUnitario = parseFloat(pai.find(".inputValorUnitario").val().replace(",", "."));
 
     var campoQuantidadeProdutoCarrinho = pai.find(".inputQuantidadeProdutoCarrinho");
     var quantidadeProdutoCarrinhoAntiga = parseInt(campoQuantidadeProdutoCarrinho.val());
@@ -71,12 +80,12 @@ function OrquestradorDeAcoesProduto(operacao, botao) {
 
     var produto = new ProdutoQuantidadeEValor(produtoId, quantidadeEstoque, valorUnitario, quantidadeProdutoCarrinhoAntiga, 0, campoQuantidadeProdutoCarrinho, campoValor);
 
-        /*
-        * Chamada de Métodos
-        */
+    /*
+    * Chamada de Métodos
+    */
     AlteracoesVisuaisProdutoCarrinho(produto, operacao);
     //TODO - Adicionar validações
-    
+
 
     //TODO - Atualizr o subtotal do produto
 }
@@ -100,7 +109,7 @@ function AlteracoesVisuaisProdutoCarrinho(produto, operacao) {
         //else 
         {
             produto.quantidadeProdutoCarrinhoNova = produto.quantidadeProdutoCarrinhoAntiga - 1;
-            
+
             AtualizarQuantidadeEValor(produto);
 
             AJAXComunicarAlteracaoQuantidadeProduto(produto);
@@ -119,7 +128,7 @@ function AJAXComunicarAlteracaoQuantidadeProduto(produto) {
             AtualizarQuantidadeEValor(produto);
         },
         success: function () {
-            
+            AJAXCalcularFrete();
         }
     });
 }
