@@ -6,22 +6,23 @@
 
     MascaraCEP();
     AcaoCalcularFreteBTN();
-    AJAXCalcularFrete();
+    AJAXCalcularFrete(false);
 });
 function MascaraCEP() {
     $(".cep").mask("00.000-00");
 }
 function AcaoCalcularFreteBTN() {
-    $(".btn-calcular-frete").click(function () {
-        AJAXCalcularFrete();
+    $(".btn-calcular-frete").click(function (e) {
+        AJAXCalcularFrete(true);
+        e.preventDefault(); //não faz a ação de click
     });
 }
-function AJAXCalcularFrete() {
+function AJAXCalcularFrete(callByButton) {
     var cep = $(".cep").val().replace(".", "").replace("-", "");
 
     if (cep.length == "8") {
 
-        $(".container-frete").html("<img src='\img\loading.gif' />");
+        $(".container-frete").html("<br /><br /><img src='\\img\\loading.gif' />");
 
         $.ajax({
             type: "GET",
@@ -43,7 +44,9 @@ function AJAXCalcularFrete() {
             }
         });
     } else {
-        MostrarMensagemDeErro("Digite o CEP para calcular o Frete!");
+        if (callByButton == true) {
+            MostrarMensagemDeErro("Digite o CEP para calcular o Frete!");
+        }
     }
 }
 function numberToReal(numero) {
