@@ -19,10 +19,20 @@ function AJAXCalcularFrete() {
             type: "GET",
             url: "/CarrinhoCompra/CalcularFrete?cepDestino=" + cep,
             error: function (data) {
-
+                MostrarMensagemDeErro("Opps! Tivemos um erro ao obter o frete..." + data.Message);
             },
             success: function (data) {
-                
+                $(".container-frete").html("");
+
+                html = "";
+                for (var i = 0; i < data.length; i++) {
+                    var tipoFrete = data[i].tipoFrete;
+                    var valor = data[i].valor;
+                    var prazo = data[i].prazo;
+
+                    html += "<dl class=\"dlist-align\"><dt><input type=\"radio\" name=\"" + tipoFrete + "\" value=\"pac\"/></dt><dd>" + tipoFrete + " - " + numberToReal(valor) + " (" + prazo + " dias uteis)</dd></dl >";
+                }
+                $(".container-frete").html(html);
             }
         });
     });
