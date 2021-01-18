@@ -18,10 +18,18 @@ function AcaoCalcularFreteBTN() {
     });
 }
 function AJAXCalcularFrete(callByButton) {
+    if (callByButton == false) {
+        if ($.cookie('Carrinho.CEP') != undefined) {
+            $(".cep").val($.cookie('Carrinho.CEP'));
+        }
+    }
+
+
     var cep = $(".cep").val().replace(".", "").replace("-", "");
 
     if (cep.length == "8") {
 
+        $.cookie('Carrinho.CEP', $(".cep").val());
         $(".container-frete").html("<br /><br /><img src='\\img\\loading.gif' />");
 
         $.ajax({
