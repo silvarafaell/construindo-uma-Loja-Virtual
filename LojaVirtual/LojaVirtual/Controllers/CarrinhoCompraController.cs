@@ -16,12 +16,12 @@ namespace LojaVirtual.Controllers
 {
     public class CarrinhoCompraController : Controller
     {
-        private CarrinhoCompra _carrinhoCompra;
+        private CookieCarrinhoCompra _carrinhoCompra;
         private IProdutoRepository _produtoRepository;
         private IMapper _mapper;
         private WSCorreiosCalcularFrete _wscorreios;
         private CalcularPacote _calcularPacote;
-        public CarrinhoCompraController(CarrinhoCompra carrinhoCompra, IProdutoRepository produtoRepository, IMapper mapper, WSCorreiosCalcularFrete wscorreios, CalcularPacote calcularPacote)
+        public CarrinhoCompraController(CookieCarrinhoCompra carrinhoCompra, IProdutoRepository produtoRepository, IMapper mapper, WSCorreiosCalcularFrete wscorreios, CalcularPacote calcularPacote)
         {
             _carrinhoCompra = carrinhoCompra;
             _produtoRepository = produtoRepository;
