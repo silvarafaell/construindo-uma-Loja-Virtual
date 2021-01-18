@@ -16,18 +16,21 @@ namespace LojaVirtual.Controllers
 {
     public class CarrinhoCompraController : Controller
     {
-        private CookieCarrinhoCompra _carrinhoCompra;
+        private CookieCarrinhoCompra _cookieCarrinhoCompra;
         private IProdutoRepository _produtoRepository;
         private IMapper _mapper;
         private WSCorreiosCalcularFrete _wscorreios;
         private CalcularPacote _calcularPacote;
-        public CarrinhoCompraController(CookieCarrinhoCompra carrinhoCompra, IProdutoRepository produtoRepository, IMapper mapper, WSCorreiosCalcularFrete wscorreios, CalcularPacote calcularPacote)
+        private CookieValorPrazoFrete _cookieValorPrazoFrete;
+
+        public CarrinhoCompraController(CookieCarrinhoCompra carrinhoCompra, IProdutoRepository produtoRepository, IMapper mapper, WSCorreiosCalcularFrete wscorreios, CalcularPacote calcularPacote, CookieValorPrazoFrete cookieValorPrazoFrete)
         {
-            _carrinhoCompra = carrinhoCompra;
+            _cookieCarrinhoCompra = carrinhoCompra;
             _produtoRepository = produtoRepository;
             _mapper = mapper;
             _wscorreios = wscorreios;
             _calcularPacote = calcularPacote;
+            _cookieValorPrazoFrete = cookieValorPrazoFrete;
         }
         public IActionResult Index()
         {
@@ -48,7 +51,7 @@ namespace LojaVirtual.Controllers
             else
             {
                 var item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = 1 };
-                _carrinhoCompra.Cadastrar(item);
+                _cookieCarrinhoCompra.Cadastrar(item);
                 return RedirectToAction(nameof(Index));
             }
         }
@@ -67,7 +70,7 @@ namespace LojaVirtual.Controllers
             else
             {
                 var item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = quantidade };
-                _carrinhoCompra.Atualizar(item);
+                _cookieCarrinhoCompra.Atualizar(item);
                 return Ok(new { mensagem = Mensagem.MSG_S001 });
             }
 
@@ -75,7 +78,7 @@ namespace LojaVirtual.Controllers
 
         public IActionResult RemoverItem(int id)
         {
-            _carrinhoCompra.Remover(new ProdutoItem() { Id = id });
+            _cookieCarrinhoCompra.Remover(new ProdutoItem() { Id = id });
             return RedirectToAction(nameof(Index));
         }
 
@@ -95,17 +98,20 @@ namespace LojaVirtual.Controllers
                 if(valorSEDEX != null) lista.Add(valorSEDEX);
                 if(valorSEDEX10 != null) lista.Add(valorSEDEX10);
 
+                _cookieValorPrazoFrete.Cadastrar(lista);
+
                 return Ok(lista);
             }
             catch (Exception e)
             {
+                _cookieValorPrazoFrete.Remover();
                 return BadRequest(e);
             }
         }
 
         private List<ProdutoItem> CarregarProdutoDB()
         {
-            List<ProdutoItem> produtoItemCarrinho = _carrinhoCompra.Consultar();
+            List<ProdutoItem> produtoItemCarrinho = _cookieCarrinhoCompra.Consultar();
 
             List<ProdutoItem> produtoItemCompleto = new List<ProdutoItem>();
 

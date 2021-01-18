@@ -39,7 +39,7 @@ namespace LojaVirtual.Libraries.CarrinhoCompra
             }
         }
 
-        public void RemoverTodos()
+        public void Remover()
         {
             _cookie.Remover(Key);
         }
