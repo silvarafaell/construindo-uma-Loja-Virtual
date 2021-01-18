@@ -46,9 +46,14 @@ function AJAXCalcularFrete(callByButton) {
                     var valor = data[i].valor;
                     var prazo = data[i].prazo;
 
-                    html += "<dl class=\"dlist-align\"><dt><input type=\"radio\" name=\"" + tipoFrete + "\" value=\"pac\"/></dt><dd>" + tipoFrete + " - " + numberToReal(valor) + " (" + prazo + " dias uteis)</dd></dl >";
+                    html += "<dl class=\"dlist-align\"><dt><input type=\"radio\" name=\"" + tipoFrete + "\" /><input type=\"hidden\" name=\"valor\" value=\"" + valor + "\" /></dt><dd>" + tipoFrete + " - " + numberToReal(valor) + " (" + prazo + " dias uteis)</dd></dl >";
                 }
                 $(".container-frete").html(html);
+                $(".container-frete").find("input[type-radio]").change(function () {
+                    var valorFrete = parseFloat($(this).parent().find("input[type=hidden]").val());
+                    $(".frete").text(numberToReal(valorFrete));
+                    
+                });              
             }
         });
     } else {
