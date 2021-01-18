@@ -31,6 +31,8 @@ function AJAXCalcularFrete(callByButton) {
 
         $.cookie('Carrinho.CEP', $(".cep").val());
         $(".container-frete").html("<br /><br /><img src='\\img\\loading.gif' />");
+        $(".frete").text("R$ 0,00");
+        $(".total").text("R$ 0,00");
 
         $.ajax({
             type: "GET",
@@ -52,7 +54,12 @@ function AJAXCalcularFrete(callByButton) {
                 $(".container-frete").find("input[type-radio]").change(function () {
                     var valorFrete = parseFloat($(this).parent().find("input[type=hidden]").val());
                     $(".frete").text(numberToReal(valorFrete));
-                    
+
+                    var subtotal = parseFloat($(".subtotal").text().replace("R$", "").replace(".", "").replace(",", "."));
+
+                    var total = valorFrete + subtotal;
+
+                    $(".total").text(numberToReal(total));
                 });              
             }
         });
