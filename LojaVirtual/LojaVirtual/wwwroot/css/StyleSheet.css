@@ -118,7 +118,7 @@
     margin-left: 65px;
     text-align: left;
 }
-.btn-continuar {
+.btn-continuar, btn-continuar-comprando {
     width: 100px;
     min-height: 70px;
     font-size: 36px;
