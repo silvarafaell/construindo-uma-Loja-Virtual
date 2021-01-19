@@ -119,7 +119,7 @@
     text-align: left;
 }
 .btn-continuar, btn-continuar-comprando {
-    width: 100px;
-    min-height: 70px;
-    font-size: 36px;
+    width: 200px;
+    min-height: 10px;
+    font-size: 30px;
 }

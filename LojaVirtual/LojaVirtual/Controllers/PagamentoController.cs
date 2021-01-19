@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LojaVirtual.Areas.Colaborador.Controllers
+namespace LojaVirtual.Controllers
 {
     public class PagamentoController : Controller
     {

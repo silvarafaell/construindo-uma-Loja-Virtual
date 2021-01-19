@@ -9,7 +9,7 @@
     AJAXCalcularFrete(false);
 });
 function MascaraCEP() {
-    $(".cep").mask("00.000-00");
+    $(".cep").mask("000.00-000");
 }
 function AcaoCalcularFreteBTN() {
     $(".btn-calcular-frete").click(function (e) {
