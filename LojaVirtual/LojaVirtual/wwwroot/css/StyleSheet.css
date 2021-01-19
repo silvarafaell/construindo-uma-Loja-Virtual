@@ -107,3 +107,10 @@
 .container-frete {
     text-align: center;
 }
+
+.control-inline {
+    flex-wrap: nowrap;
+}
+.dlist-align dd{
+    margin-left: 60px;
+}
