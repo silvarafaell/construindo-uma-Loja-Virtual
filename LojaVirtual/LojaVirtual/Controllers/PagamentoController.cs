@@ -25,20 +25,20 @@ namespace LojaVirtual.Controllers
         public IActionResult Index()
         {
             var tipoFreteSelecionadoPeloUsuario = _cookie.Consultar("Carrinho.TipoFrete", false);
-            var frete = _cookieValorPrazoFrete.Consultar().Where(a => a.TipoFrete == tipoFreteSelecionadoPeloUsuario).FirstOrDefault();
-
-            if(frete != null)
+            if(tipoFreteSelecionadoPeloUsuario != null)
             {
-                List<ProdutoItem> produtoItemCompleto = CarregarProdutoDB();
+                var frete = _cookieValorPrazoFrete.Consultar().Where(a => a.TipoFrete == tipoFreteSelecionadoPeloUsuario).FirstOrDefault();
 
-                return View(produtoItemCompleto);
+                if (frete != null)
+                {
+                    ViewBag.Frte = frete;
+                    List<ProdutoItem> produtoItemCompleto = CarregarProdutoDB();
+
+                    return View(produtoItemCompleto);
+                }
             }
-            else
-            {
                 TempData["MSG_E"] = Mensagem.MSG_E009;
                 return RedirectToAction("Index", "CarrinhoCompra");
-            }
-            
         }
     }
 }
