@@ -31,7 +31,7 @@ namespace LojaVirtual.Controllers
 
                 if (frete != null)
                 {
-                    ViewBag.Frte = frete;
+                    ViewBag.Frete = frete;
                     List<ProdutoItem> produtoItemCompleto = CarregarProdutoDB();
 
                     return View(produtoItemCompleto);
