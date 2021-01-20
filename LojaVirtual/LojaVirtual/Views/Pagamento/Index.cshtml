@@ -1,5 +1,7 @@
-﻿@{
-    ViewData ["Título"] = "Índice";
+﻿@model List<LojaVirtual.Models.ProdutoAgregador.ProdutoItem>
+@{
+    ViewData["Title"] = "Index";
+    decimal Subtotal = 0;
 }
 
 <div class="container">
@@ -9,88 +11,97 @@
         <div class="col-md-6">
             <div id="code_itemside_img2">
                 <div class="box items-bordered-wrap">
-                    <figure class="itemside">
-                        <div class="Side"> <img src="images / items / 4.jpg" class="img-sm"> </div>
-                        <figcaption class="text-wrap align-self-center">
-                            <h6 class="title"> <a href="#"> Algum nome do item vai legal aqui </a> </h6>
-                            <div class="price-wrap">
-                                <span class="price-new"> $ 1280 </span>
-                                <del class="price-old text-muted"> US $ 1980 </del>
-                            </div> <! - price-wrap.// ->
-                        </figcaption>
-                    </figure>
-                    <figure class="itemside">
-                        <div class="Side"> <img src="images / items / 5.jpg" class="img-sm"> </div>
-                        <figcaption class="text-wrap align-self-center">
-                            <h6 class="title"> <a href="#"> Algum nome do item vai legal aqui </a> </h6>
-                            <div class="price-wrap">
-                                <span class="price-new"> $ 1280 </span>
-                            </div> <! - price-wrap.// ->
-                        </figcaption>
-                    </figure>
-                    <figure class="itemside">
-                        <div class="Side"> <img src="images / items / 6.jpg" class="img-sm"> </div>
-                        <figcaption class="text-wrap align-self-center">
-                            <h6 class="title"> <a href="#"> Algum nome do item vai legal aqui </a> </h6>
-                            <div class="price-wrap">
-                                <span class="price-new"> $ 1280 </span>
-                            </div> <! - price-wrap.// ->
-                        </figcaption>
-                    </figure>
-                </div> <! - box.// ->
+                    @foreach (var item in Model)
+                    {
+                        <figure class="itemside">
+                            <div class="aside">
+                                @if (item.Imagens.Count > 0)
+                                {
+                                    <img src="@item.Imagens.First().Caminho" class="img-sm">
+                                }
+                                else
+                                {
+                                    <img src="~/img/imagem-produto.png" class="img-sm">
+                                }
+                            </div>
+                            <figcaption class="text-wrap align-self-center">
+                                @{
+                                    var ResultadoSubtotalItem = item.Valor * item.QuantidadeProdutoCarrinho;
+                                    Subtotal = Subtotal + ResultadoSubtotalItem;
+                                }
 
+                                <h6 class="title"><strong>@item.Nome.ToUpper()</strong></h6>
+                                <div class="price-wrap">
+                                    <span class="price-new">@item.Valor.ToString("C") x @item.QuantidadeProdutoCarrinho = <strong>@ResultadoSubtotalItem.ToString("C")</strong></span>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    }
+                </div>
+                <div class="box">
+                    <h4 class="subtitle-doc">
+                        Resumo
+                    </h4>
+                    <dl class="dlist-align">
+                        <dt>Subtotal: </dt>
+                        <dd class="text-right subtotal">@Subtotal.ToString("C")</dd>
+                    </dl>
+                    <dl class="dlist-align">
+                        <dt>Frete:</dt>
+                        <dd class="text-right frete">PAC/SEDEX - R$ 0,00</dd>
+                    </dl>
+                    <dl class="dlist-align">
+                        <dt>TOTAL:</dt>
+                        <dd class="text-right total">R$ 0,00</dd>
+                    </dl>
+                </div>
             </div>
         </div>
         <div class="col-md-6">
             <div id="code_payment2">
 
-                <artigo classe="cartão">
+                <article class="card">
                     <div class="card-body p-5">
 
                         <ul class="nav bg radius nav-pills nav-fill mb-3" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#nav-tab-card">
-                                    <i class="fa fa-credit-card"> </i> Cartão de crédito
+                                <a class="nav-link active show" data-toggle="pill" href="#nav-tab-card">
+                                    <i class="fa fa-credit-card"></i> Cartão de Crédito
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active show" data-toggle="pill" href="#nav-tab-paypal">
-                                    <i class="fab fa-paypal"> </i> Paypal
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
-                                    <i class="fa fa-university"> </i> Transferência Bancária
+                                <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
+                                    <i class="fab fa-paypal"></i>  Boleto Bancário
                                 </a>
                             </li>
                         </ul>
 
                         <div class="tab-content">
-                            <div class="tab-pane fade" id="nav-tab-card">
-                                <p class="alert alert-success"> Sucesso ou erro no texto </p>
+                            <div class="tab-pane fade active show" id="nav-tab-card">
+                                <p class="alert alert-danger">Some text success or error</p>
                                 <form role="form">
                                     <div class="form-group">
-                                        <label for="username"> Nome completo (no cartão) </label>
+                                        <label for="username">Nome (no cartão)</label>
                                         <input type="text" class="form-control" name="username" placeholder="" required="">
-                                    </div> <! - form-group.// ->
+                                    </div>
 
                                     <div class="form-group">
-                                        <label for="cardNumber"> Número do cartão </label>
+                                        <label for="cardNumber">Número cartão</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="cardNumber" placeholder="">
                                             <div class="input-group-append">
-                                                <span class="input-group-text-muted">
-                                                    <i class="fab fa-cc-visa"> </i> & nbsp; <i class="fab fa-cc-amex"> </i> & nbsp;
-                                                    <i class="fab fa-cc-mastercard"> </i>
+                                                <span class="input-group-text text-muted">
+                                                    <i class="fab fa-cc-visa"></i> &nbsp; <i class="fab fa-cc-amex"></i> &nbsp;
+                                                    <i class="fab fa-cc-mastercard"></i>
                                                 </span>
                                             </div>
                                         </div>
-                                    </div> <! - form-group.// ->
+                                    </div>
 
                                     <div class="row">
                                         <div class="col-sm-8">
                                             <div class="form-group">
-                                                <label> <span class="hidden-xs"> Expiração </span> </label>
+                                                <label><span class="hidden-xs">Vecimento</span> </label>
                                                 <div class="input-group">
                                                     <input type="number" class="form-control" placeholder="MM" name="">
                                                     <input type="number" class="form-control" placeholder="YY" name="">
@@ -99,48 +110,25 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label data-toggle="tooltip" title="" data-original-title="código de 3 dígitos no verso do cartão">
-                                                    CVV <i class="fa fa-question-circle"> </i> < / label>
-                                                    <input type="number" class="form-control" required="">
-                                            </div> <! - form-group.// ->
+                                                <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">Cód. segurança <i class="fa fa-question-circle"></i></label>
+                                                <input type="number" class="form-control" required="">
+                                            </div>
                                         </div>
-                                    </div> <! - row.// ->
-                                    <button class="subscribe btn btn-primary btn-block" type="button"> Confirmar </button>
+                                    </div>
+                                    <button class="subscribe btn btn-primary btn-block" type="button"> Confirmar  </button>
                                 </form>
-                            </div> <! - tab-pane.// ->
-                            <div class="tab-pane fade active show" id="nav-tab-paypal">
-                                <p> O Paypal é a maneira mais fácil de pagar online </p>
+                            </div>
+                            <div class="tab-pane fade" id="nav-tab-paypal">
+                                <p>Clique no botão para imprimir o boleto bancário.</p>
                                 <p>
-                                    <button type="button" class="btn btn-primary"> <i class="fab fa-paypal"> </i> Faça login no meu Paypal </button>
-                                </p>
-                                <p>
-                                    <strong> Nota: </strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua.
+                                    <button type="button" class="btn btn-primary"> <i class="fab fa-barcode"></i> Imprimir boleto </button>
                                 </p>
                             </div>
-                            <div class="tab-pane fade" id="nav-tab-bank">
-                                <p> Detalhes da conta bancária </p>
-                                <dl class="param">
-                                    <dt> BANCO: </dt>
-                                    <dd> O BANCO MUNDIAL </dd>
-                                </dl>
-                                <dl class="param">
-                                    <dt> Número da conta: </dt>
-                                    <dd> 12345678912345 </dd>
-                                </dl>
-                                <dl class="param">
-                                    <dt> IBAN: </dt>
-                                    <dd> 123456789 </dd>
-                                </dl>
-                                <p>
-                                    <strong> Nota: </strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua.
-                                </p>
-                            </div> <! - tab-pane.// ->
-                        </div> <! - tab-content .// ->
 
-                    </div> <! - card-body.// ->
-                    </article> <! - card.// ->
+                        </div>
+
+                    </div>
+                </article>
 
             </div>
         </div>
