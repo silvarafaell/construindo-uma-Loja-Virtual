@@ -88,7 +88,7 @@ namespace LojaVirtual
             services.AddMemoryCache(); //Guardar os dados na memoria
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.Cookie.IsEssential = true;
             });
 
             services.AddScoped<Sessao>();
@@ -112,11 +112,6 @@ namespace LojaVirtual
             })
              .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
              .AddSessionStateTempDataProvider();
-
-            services.AddSession(options =>
-            {
-                options.Cookie.IsEssential = true;
-            });
 
             //caminho do banco de dados e qual conexão com ele
             string connection = "Server=RAFAEL\\SQLEXPRESS;Database=LojaVirtual;User Id=sa;Password=1234;";
@@ -152,8 +147,6 @@ namespace LojaVirtual
              *
              *
              */
-
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
