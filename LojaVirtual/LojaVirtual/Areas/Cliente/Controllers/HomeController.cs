@@ -27,7 +27,7 @@ namespace LojaVirtual.Areas.Cliente.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login([FromForm] Models.Cliente cliente)
+        public IActionResult Login([FromForm] Models.Cliente cliente, string returnUrl = null)
         {
             Models.Cliente clienteDB = _repositoryCliente.Login(cliente.Email, cliente.Senha);
 
@@ -35,7 +35,15 @@ namespace LojaVirtual.Areas.Cliente.Controllers
             {
                 _loginCliente.Login(clienteDB);
 
-                return new RedirectResult(Url.Action(nameof(Painel)));
+                if(returnUrl == null)
+                {
+                    return new RedirectResult(Url.Action(nameof(Painel)));
+                }
+                else
+                {
+                    return LocalRedirectPermanent(returnUrl);
+                }
+                
             }
             else
             {
