@@ -6,6 +6,7 @@ using AutoMapper;
 using LojaVirtual.Controllers.Base;
 using LojaVirtual.Libraries.CarrinhoCompra;
 using LojaVirtual.Libraries.Cookie;
+using LojaVirtual.Libraries.Filtro;
 using LojaVirtual.Libraries.Gerenciador.Frete;
 using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Models.ProdutoAgregador;
@@ -22,6 +23,7 @@ namespace LojaVirtual.Controllers
             _cookie = cookie;
         }
 
+        [ClienteAutorizacao]
         public IActionResult Index()
         {
             var tipoFreteSelecionadoPeloUsuario = _cookie.Consultar("Carrinho.TipoFrete", false);
