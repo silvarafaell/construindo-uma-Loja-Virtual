@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projetos\\construindo-uma-Loja-Virtual\\LojaVirtual\\LojaVirtual\\LojaVirtual.csproj": {}
+    "C:\\Users\\francisco.silva\\construindo-uma-Loja-Virtual\\LojaVirtual\\LojaVirtual\\LojaVirtual.csproj": {}
   },
   "projects": {
-    "C:\\Projetos\\construindo-uma-Loja-Virtual\\LojaVirtual\\LojaVirtual\\LojaVirtual.csproj": {
+    "C:\\Users\\francisco.silva\\construindo-uma-Loja-Virtual\\LojaVirtual\\LojaVirtual\\LojaVirtual.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projetos\\construindo-uma-Loja-Virtual\\LojaVirtual\\LojaVirtual\\LojaVirtual.csproj",
+        "projectUniqueName": "C:\\Users\\francisco.silva\\construindo-uma-Loja-Virtual\\LojaVirtual\\LojaVirtual\\LojaVirtual.csproj",
         "projectName": "LojaVirtual",
-        "projectPath": "C:\\Projetos\\construindo-uma-Loja-Virtual\\LojaVirtual\\LojaVirtual\\LojaVirtual.csproj",
-        "packagesPath": "C:\\Users\\Rafael\\.nuget\\packages\\",
-        "outputPath": "C:\\Projetos\\construindo-uma-Loja-Virtual\\LojaVirtual\\LojaVirtual\\obj\\",
+        "projectPath": "C:\\Users\\francisco.silva\\construindo-uma-Loja-Virtual\\LojaVirtual\\LojaVirtual\\LojaVirtual.csproj",
+        "packagesPath": "C:\\Users\\francisco.silva\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\francisco.silva\\construindo-uma-Loja-Virtual\\LojaVirtual\\LojaVirtual\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Rafael\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\francisco.silva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
@@ -26,7 +30,6 @@
         },
         "frameworks": {
           "netcoreapp2.2": {
-            "targetAlias": "netcoreapp2.2",
             "projectReferences": {}
           }
         },
@@ -38,7 +41,6 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
-          "targetAlias": "netcoreapp2.2",
           "dependencies": {
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -107,6 +109,10 @@
               "target": "Package",
               "version": "[12.0.3, )"
             },
+            "Pagar.me": {
+              "target": "Package",
+              "version": "[2.7.1, )"
+            },
             "System.ServiceModel.Duplex": {
               "target": "Package",
               "version": "[4.4.*, )"
@@ -138,7 +144,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
